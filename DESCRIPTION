@@ -1,11 +1,29 @@
 Package: kalaiwash
-Title: What the Package Does (One Line, Title Case)
+Title: Household Water Insecurity and Drinking Water Service Levels from the KALAI Project in Nampula, Mozambique
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: c(
+    person("John", "Brogan", , "john.brogan.pro@gmail.com", role = "aut"),
+    person("Adriana", "Clavijo Daza", , "aclavijo@ethz.ch", role = "cre",
+           comment = c(ORCID = "0009-0002-0589-2274")),
+    person("Dercio", "Obra", role = "ctb")
+  )
+Description: Baseline (November 2024) and endline (June 2025) household survey
+    data from the KALAI water, sanitation and hygiene project of HELVETAS in
+    Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique.
+    The data cover 275 household interviews and include the primary drinking
+    water source classified with the WHO/UNICEF Joint Monitoring Programme
+    (JMP) service ladder, water collection times and volumes, sanitation and
+    handwashing practices, and the 12-item Household Water Insecurity
+    Experiences (HWISE) Scale with its summary score and insecurity level.
+License: CC BY 4.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
+Depends: 
+    R (>= 3.5)
+LazyData: true
+Language: en-GB
+Config/Needs/website: rmarkdown
+Date: 2026-10-02
+URL: https://github.com/openwashdata/kalaiwash
+BugReports: https://github.com/openwashdata/kalaiwash/issues
