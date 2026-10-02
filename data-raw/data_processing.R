@@ -1,55 +1,66 @@
 # Description ------------------------------------------------------------------
 # R script to process uploaded raw data into a tidy, analysis-ready data frame
+
 # Load packages ----------------------------------------------------------------
-## Run the following code in console if you don't have the packages
-## install.packages(c("usethis", "fs", "here", "readr", "readxl", "openxlsx"))
 library(usethis)
-library(fs)
 library(here)
-library(readr)
+library(readxl)
 library(dplyr)
 library(tidyr)
 library(openxlsx)
 
 # Read data --------------------------------------------------------------------
-# data_in <- readr::read_csv("data-raw/dataset.csv")
-# codebook <- readxl::read_excel("data-raw/codebook.xlsx") |>
-#  clean_names()
+
+raw_data <- read_excel(
+  here::here("data-raw", "MZ_WISE_baseline-endline2.xlsx"),
+  col_types = c("guess", "date", rep("guess", 47))  # column B is survey_date
+)
 
 # Tidy data --------------------------------------------------------------------
-## Clean the raw data into a tidy format here
 
-raw <- read_csv("../data/raw/MZ_WISE_baseline-endline2.csv")
-
-cols_to_remove <- c(
-  "Container_size", "total_liters", "liters_person",
-  "25liter", "20liter", "15liter", "10liter", "5liter",
-  "Code", "survey_date", "mgmt_turnoff", "mgmt_comm",
-  "notsatisfied_why", "places_adults_poo", "handwash_demo"
-)
-clean <- raw |>
-  select(-any_of(cols_to_remove)) |>
-  rename_with(~ gsub("hwise:drinking", "hwise_drinking", .x))
-
-# --- Factor and numeric conversions ---
-clean <- clean |>
+# whether_improved, hwise_score, insecurity_level, total_collect_time,
+# total_liters, liters_person and the JMP water_* indicators are calculated in
+# the raw Excel file; they are dropped here and recalculated in transformed_data
+clean_data <- raw_data |>
+  janitor::clean_names() |>
+  select(-code, -container_size, -handwashing_basic,
+         -dry_months, -mgmt_turnoff, -mgmt_comm,
+         -whether_improved, -hwise_score, -insecurity_level,
+         -total_collect_time, -total_liters, -liters_person,
+         -water_surface, -water_unimproved, -water_limited, -water_basic) |>
+  rename(
+    defecation_place = places_adults_poo,
+    containers_25l = x25liter, containers_20l = x20liter,
+    containers_15l = x15liter, containers_10l = x10liter,
+    containers_5l = x5liter
+  ) |>
   mutate(
+    survey_date = as.Date(survey_date),
+    across(starts_with("containers_"), ~ replace_na(.x, 0)),
     survey_type = factor(survey_type, levels = c("Baseline", "Endline")),
-    District = factor(District, levels = c("Larde", "Memba", "Moma", "Mecuburi")),
-    insecurity_level = factor(insecurity_level,
-                              levels = c("High", "Moderate", "Low", "No-to-marginal" )),
-    whether_improved = factor(whether_improved, levels = c("Unimproved", "Improved")),
-    satisfied = case_when(
-      trimws(satisfied) == "Satistfied" ~ "Satisfied",
-      TRUE ~ satisfied
-    ),
+    district = factor(district, levels = c("Larde", "Memba", "Moma", "Mecuburi")),
+    community = factor(community),
+    gender = factor(gender, levels = c("Female", "Male")),
+    source = factor(source, levels = c(
+      "Borehole with handpump", "Protected dug well",
+      "Protected dug well with handpump", "Public tap or standpipe",
+      "Unprotected dug well", "Unprotected spring", "Surface water"
+    )),
+    across(c(collect_yesterday, handwash_demo, water_wash),
+           ~ factor(.x, levels = c("No", "Yes"))),
+    satisfied = if_else(satisfied == "Satistfied", "Satisfied", satisfied),
     satisfied = factor(satisfied, levels = c("Not Satisfied", "Satisfied")),
-    hwise_score = as.numeric(hwise_score),
-    total_collect_time = as.numeric(total_collect_time),
-    water_basic = as.numeric(water_basic),
-    water_limited = as.numeric(water_limited),
-    water_unimproved = as.numeric(water_unimproved),
-    water_surface = as.numeric(water_surface)
+    notsatisfied_why = factor(notsatisfied_why),
+    # the raw value separates "In water body" and "river or lake" with an en dash
+    defecation_place = if_else(startsWith(defecation_place, "In water body"),
+                               "In water body: river or lake", defecation_place),
+    defecation_place = factor(defecation_place, levels = c(
+      "Latrine/toilet", "In the open/no sanitation facilities",
+      "In water body: river or lake"
+    )),
+    soap_ash = factor(soap_ash, levels = c(
+      "Soap", "Ash", "Other cleanser or detergent", "None shown"
+    ))
   )
 
 hwise_cols <- c(
@@ -58,79 +69,89 @@ hwise_cols <- c(
   "hwise_no_bodywash", "hwise_drinking", "hwise_angry",
   "hwise_sleepthirsty", "hwise_nowater", "hwise_shame"
 )
-# --- Filter out invalid responses ---
-clean <- clean |>
-  filter(!if_any(all_of(hwise_cols), ~ . %in% c("", "DNK", "N/A")))
 
-clean <- clean |>
-  rename(
-    Felt_Worried = hwise_worry,
-    Service_Interrupted = hwise_interrupt,
-    Too_Little_for_Clothes = hwise_clothes,
-    Changed_Routine = hwise_change_plans,
-    Too_Little_for_Cooking = hwise_change_meal,
-    Too_Little_for_Hands = hwise_nohandwash,
-    Too_Little_to_Bathe = hwise_no_bodywash,
-    Too_Little_to_Drink = hwise_drinking,
-    Felt_Angry = hwise_angry,
-    Slept_Thirsty = hwise_sleepthirsty,
-    No_Water_at_All = hwise_nowater,
-    Felt_Shame = hwise_shame
+improved_sources <- c(
+  "Borehole with handpump", "Protected dug well",
+  "Protected dug well with handpump", "Mechanized borehole",
+  "Protected spring", "Public tap or standpipe",
+  "Piped water into dwelling", "Piped water into yard or plot"
+)
+
+# HWISE-12 item weights: Never 0, Rarely 1, Sometimes 2, Often/Always 3
+hwise_weights <- c(
+  "Never (0 times)" = 0,
+  "Rarely (1-2 times)" = 1,
+  "Sometimes (3-10 times)" = 2,
+  "Often (11-20 times)" = 3,
+  "Always (more than 20 times)" = 3
+)
+
+transformed_data <- clean_data |>
+  mutate(
+    jmp_improved = case_when(
+      source == "Don't know" ~ NA_character_,
+      source %in% improved_sources ~ "Improved",
+      TRUE ~ "Unimproved"
+    ),
+    jmp_improved = factor(jmp_improved, levels = c("Unimproved", "Improved")),
+    hwise_score = rowSums(across(all_of(hwise_cols), ~ hwise_weights[.x])),
+    hwise_insecurity_level = case_when(
+      hwise_score <= 2 ~ "No-to-marginal",
+      hwise_score <= 11 ~ "Low",
+      hwise_score <= 23 ~ "Moderate",
+      hwise_score <= 36 ~ "High"
+    ),
+    hwise_insecurity_level = factor(
+      hwise_insecurity_level,
+      levels = c("High", "Moderate", "Low", "No-to-marginal")
+    ),
+    .after = source
+  ) |>
+  relocate(hwise_score, hwise_insecurity_level, .after = hwise_shame) |>
+  mutate(
+    total_collect_time = 2 * oneway_travel + wait_time,
+    .after = wait_time
+  ) |>
+  mutate(
+    jmp_water_service = case_when(
+      source == "Surface water" ~ "Surface water",
+      jmp_improved == "Unimproved" ~ "Unimproved",
+      total_collect_time > 30 ~ "Limited",
+      TRUE ~ "Basic"
+    ),
+    jmp_water_service = factor(jmp_water_service,
+                               levels = c("Surface water", "Unimproved",
+                                          "Limited", "Basic")),
+    .after = jmp_improved
+  ) |>
+  mutate(
+    total_liters = 25 * containers_25l + 20 * containers_20l +
+      15 * containers_15l + 10 * containers_10l + 5 * containers_5l,
+    liters_person = total_liters / household_size
   )
 
-hwise_items <- c(
-  "Felt_Worried",
-  "Service_Interrupted",
-  "Too_Little_for_Clothes",
-  "Changed_Routine",
-  "Too_Little_for_Cooking",
-  "Too_Little_for_Hands",
-  "Too_Little_to_Bathe",
-  "Too_Little_to_Drink",
-  "Felt_Angry",
-  "Slept_Thirsty",
-  "No_Water_at_All",
-  "Felt_Shame"
+# --- HWISE items as ordered factors with short labels ---
+hwise_levels <- c(
+  "Never (0 times)" = "Never",
+  "Rarely (1-2 times)" = "Rarely",
+  "Sometimes (3-10 times)" = "Sometimes",
+  "Often (11-20 times)" = "Often",
+  "Always (more than 20 times)" = "Always"
 )
-hwise_labels <- gsub("_", " ", hwise_items)
 
-# --- Recode text responses into 4 levels ---
-clean <- clean |>
-  mutate(across(
-    all_of(hwise_items),
-    ~ case_when(
-      . %in% c("Never (0 times)")                 ~ "Never",
-      . %in% c("Rarely (1-2 times)")             ~ "Rarely",
-      . %in% c("Sometimes (3-10 times)")         ~ "Sometimes",
-      . %in% c("Often (11-20 times)", "Always (more than 20 times)") ~ "Often/Always",
-      TRUE ~ NA_character_
-    )
-  ))
-
-# --- Prepare long dataset for plotting with correct percent calculation ---
-water_insecurity_items <- clean |>
-  select(survey_type, all_of(hwise_items)) |>
-  pivot_longer(
-    cols = all_of(hwise_items),
-    names_to = "item",
-    values_to = "frequency"
-  ) |>
-  filter(!is.na(frequency)) |>
+kalaiwash <- transformed_data |>
   mutate(
-    frequency = factor(frequency, levels = c("Never", "Rarely", "Sometimes", "Often/Always")),
-    item = factor(item, levels = rev(hwise_items))
-  ) |>
-  group_by(survey_type, item, frequency) |>
-  summarise(n = n(), .groups = "drop") |>
-  group_by(survey_type, item) |>        # <-- crucial for correct percentages
-  mutate(percent = n / sum(n) * 100) |>
-  ungroup()
-
+    across(all_of(hwise_cols),
+           ~ factor(hwise_levels[.x], levels = hwise_levels, ordered = TRUE)),
+    notsatisfied_why = recode(notsatisfied_why, "Other (please specify)" = "Other")
+  )
 
 # Export Data ------------------------------------------------------------------
 usethis::use_data(kalaiwash, overwrite = TRUE)
 fs::dir_create(here::here("inst", "extdata"))
-readr::write_csv(kalaiwash,
+kalaiwash_export <- kalaiwash |>
+  mutate(liters_person = round(liters_person, 2))
+readr::write_csv(kalaiwash_export,
                  here::here("inst", "extdata", paste0("kalaiwash", ".csv")))
-openxlsx::write.xlsx(kalaiwash,
+openxlsx::write.xlsx(kalaiwash_export,
                      here::here("inst", "extdata", paste0("kalaiwash", ".xlsx")))
