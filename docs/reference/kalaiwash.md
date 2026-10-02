@@ -1,0 +1,225 @@
+# kalaiwash: Household water insecurity and drinking water service levels from the KALAI project in Nampula, Mozambique
+
+Baseline (November 2024) and endline (June 2025) household survey data
+from the KALAI water, sanitation and hygiene project of HELVETAS in
+Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique.
+Each row is one household interview. Variables cover the primary
+drinking water source and its WHO/UNICEF Joint Monitoring Programme
+(JMP) service level, water collection times and volumes, sanitation and
+handwashing practices, and the 12 items of the Household Water
+Insecurity Experiences (HWISE) Scale with the summary score (0 to 36)
+and insecurity level. The HWISE items are ordered factors whose levels
+refer to the number of times in the last four weeks: Never (0), Rarely
+(1 to 2), Sometimes (3 to 10), Often (11 to 20) and Always (more than
+20). Derived variables were recalculated in R from the raw survey
+responses and checked against the original Excel calculations; see
+`data-raw/data_processing.R`.
+
+## Usage
+
+``` r
+kalaiwash
+```
+
+## Format
+
+A tibble with 275 rows and 40 variables
+
+- survey_date:
+
+  Date of the interview
+
+- survey_type:
+
+  Survey round: Baseline (November 2024) or Endline (June 2025)
+
+- district:
+
+  District of Nampula Province where the household is located
+
+- community:
+
+  Name of village
+
+- gender:
+
+  Whether the respondent is male or female
+
+- household_size:
+
+  The number of people living and eating together in the household
+  including the respondent
+
+- source:
+
+  Household's primary drinking water source
+
+- jmp_improved:
+
+  If the Water source is "improved" or "unimproved" according to the JMP
+  classification, derived from source: Improved for borehole with
+  handpump, protected dug well (with or without handpump), public tap or
+  standpipe, mechanized borehole, protected spring and piped water;
+  Unimproved otherwise
+
+- jmp_water_service:
+
+  JMP drinking water service level derived from source and
+  total_collect_time: Surface water; Unimproved (other unimproved
+  source); Limited (improved source, total collection time over 30
+  minutes); Basic (improved source, total collection time of 30 minutes
+  or less)
+
+- collect_yesterday:
+
+  If anyone in the household collected drinking water yesterday
+
+- containers_25l:
+
+  Number of 25 liter containers used to collect water yesterday
+
+- containers_20l:
+
+  Number of 20 liter containers used to collect water yesterday
+
+- containers_15l:
+
+  Number of 15 liter containers used to collect water yesterday
+
+- containers_10l:
+
+  Number of 10 liter containers used to collect water yesterday
+
+- containers_5l:
+
+  Number of 5 liter containers used to collect water yesterday
+
+- oneway_travel:
+
+  Estimate of how long household member had to walk to get to the water
+  source in minutes (not round-trip)
+
+- wait_time:
+
+  The last time household member went to the source, estimate of how
+  long to wait to collect water from the source in minutes
+
+- total_collect_time:
+
+  Total collection time in minutes: twice the one-way walk
+  (oneway_travel) plus the wait time (wait_time)
+
+- satisfied:
+
+  Whether the respondent is satisfied with the water service
+
+- notsatisfied_why:
+
+  Why not satisfied with your water service
+
+- defecation_place:
+
+  The places that adult men and women in this household defecate
+
+- handwash_demo:
+
+  Willing to show where and how handwashing happens
+
+- soap_ash:
+
+  Household demo uses soap or ash or another cleanser to wash hands
+
+- water_wash:
+
+  Household demo uses water to wash hands
+
+- hwise_worry:
+
+  In the last 4 weeks, how frequently did you or anyone in your
+  household worry you would not have enough water for all of your
+  household needs?
+
+- hwise_interrupt:
+
+  In the last 4 weeks, how frequently has your main water source been
+  interrupted or limited (e.g. water pressure, less water than expected,
+  river dried up)?
+
+- hwise_clothes:
+
+  In the last 4 weeks, how frequently have problems with water meant
+  that clothes could not be washed?
+
+- hwise_change_plans:
+
+  In the last 4 weeks, how frequently have you or anyone in your
+  household had to change schedules or plans due to problems with your
+  water situation? (e.g. caring for others, household chores,
+  agricultural work, IGA, sleeping)
+
+- hwise_change_meal:
+
+  In the last 4 weeks, how frequently have you or anyone in your
+  household had to change what was being eaten because there were
+  problems with water (e.g., for washing foods, cooking, etc.)?
+
+- hwise_nohandwash:
+
+  In the last 4 weeks, how frequently have you or anyone in your
+  household had to go without washing hands after dirty activities
+  (e.g., defecating or changing diapers, cleaning animal dung) because
+  of problems with water?
+
+- hwise_no_bodywash:
+
+  In the last 4 weeks, how frequently have you or anyone in your
+  household had to go without washing their body because of problems
+  with water (e.g., not enough water, dirty, unsafe)?
+
+- hwise_drinking:
+
+  In the last 4 weeks, how frequently has there not been as much water
+  to drink as you would like for you or anyone in your household?
+
+- hwise_angry:
+
+  In the last 4 weeks, how frequently did you or anyone in your
+  household feel angry about your water situation?
+
+- hwise_sleepthirsty:
+
+  In the last 4 weeks, how frequently have you or anyone in your
+  household gone to sleep thirsty because there wasn’t any water to
+  drink?
+
+- hwise_nowater:
+
+  In the last 4 weeks, how frequently has there been no useable or
+  drinkable water whatsoever in your household?
+
+- hwise_shame:
+
+  In the last 4 weeks, how frequently did you or anyone in your
+  household feel ashamed/excluded/stigmatized?
+
+- hwise_score:
+
+  Sum of the 12 HWISE items scored Never 0, Rarely 1, Sometimes 2, Often
+  or Always 3; range 0 to 36
+
+- hwise_insecurity_level:
+
+  Water insecurity level from hwise_score: 0 to 2 "No-to-marginal", 3 to
+  11 "Low", 12 to 23 "Moderate", 24 to 36 "High"
+
+- total_liters:
+
+  Total liters collected in past 24 hours using any water transport
+  container(s) of any volume(s), derived as 25 \* containers_25l + 20 \*
+  containers_20l + 15 \* containers_15l + 10 \* containers_10l + 5 \*
+  containers_5l
+
+- liters_person:
+
+  Liters collected in past 24 hours per household member (total_liters
+  divided by household_size)
