@@ -24,5 +24,3 @@ authors:
     text: "Crafted by"
   sidebar:
     roles: [cre, aut, ctb]
-    before: "So *who* does the work?"
-    after: "Thanks all!"

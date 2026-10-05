@@ -3,13 +3,12 @@
 The goal of kalaiwash is to provide the baseline and endline household
 survey data of the KALAI water, sanitation and hygiene project of
 HELVETAS in Nampula Province, Mozambique. The project was funded by
-charity: water. Baseline data were collected in November 2024 and
-endline data in June 2025 in the districts of Larde, Memba, Moma and
-Mecuburi. The data describe drinking water sources classified with the
-WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, water
-collection times and volumes, sanitation and handwashing practices, and
-household water insecurity measured with the 12-item Household Water
-Insecurity Experiences (HWISE) Scale.
+charity. Baseline data were collected in November 2024 and endline data
+in June 2025 in the districts of Larde, Memba, Moma and Mecuburi. The
+data describe drinking water sources classified with the WHO/UNICEF
+Joint Monitoring Programme (JMP) service ladder, and household water
+insecurity measured with the 12-item Household Water Insecurity
+Experiences (HWISE) Scale.
 
 ## Installation
 
@@ -25,12 +24,14 @@ devtools::install_github("openwashdata/kalaiwash")
 ``` r
 
 ## Run the following code in console if you don't have the packages
-## install.packages(c("dplyr", "knitr", "readr", "stringr", "gt", "kableExtra"))
+## install.packages(c("dplyr", "tidyr", "ggplot2", "patchwork", "knitr", "readr", "stringr", "kableExtra"))
 library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
 library(knitr)
 library(readr)
 library(stringr)
-library(gt)
 library(kableExtra)
 ```
 
@@ -56,23 +57,6 @@ library(kalaiwash)
 ```
 
 ### kalaiwash
-
-The dataset `kalaiwash` contains one row per household interview. It has
-275 observations and 40 variables.
-
-``` r
-
-kalaiwash |> 
-  head(3) |> 
-  gt::gt() |>
-  gt::as_raw_html()
-```
-
-| survey_date | survey_type | district | community | gender | household_size | source | jmp_improved | jmp_water_service | collect_yesterday | containers_25l | containers_20l | containers_15l | containers_10l | containers_5l | oneway_travel | wait_time | total_collect_time | satisfied | notsatisfied_why | defecation_place | handwash_demo | soap_ash | water_wash | hwise_worry | hwise_interrupt | hwise_clothes | hwise_change_plans | hwise_change_meal | hwise_nohandwash | hwise_no_bodywash | hwise_drinking | hwise_angry | hwise_sleepthirsty | hwise_nowater | hwise_shame | hwise_score | hwise_insecurity_level | total_liters | liters_person |
-|---:|:--:|:--:|:--:|:--:|---:|:--:|:--:|:--:|:--:|---:|---:|---:|---:|---:|---:|---:|---:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---:|:--:|---:|---:|
-| 2025-06-18 | Endline | Memba | Cruzamento dos velhos | Male | 6 | Borehole with handpump | Improved | Basic | No | 0 | 0 | 0 | 0 | 0 | 10 | 10 | 30 | Satisfied | NA | Latrine/toilet | Yes | Ash | Yes | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | 0 | No-to-marginal | 0 | 0.00000 |
-| 2025-06-18 | Endline | Memba | Cruzamento dos velhos | Male | 10 | Borehole with handpump | Improved | Basic | Yes | 0 | 4 | 0 | 0 | 0 | 1 | 5 | 7 | Satisfied | NA | Latrine/toilet | Yes | Soap | Yes | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | 0 | No-to-marginal | 80 | 8.00000 |
-| 2025-06-18 | Endline | Memba | Cruzamento dos velhos | Female | 6 | Borehole with handpump | Improved | Basic | Yes | 0 | 5 | 0 | 0 | 0 | 3 | 10 | 16 | Satisfied | NA | Latrine/toilet | Yes | Soap | Yes | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | Never | 0 | No-to-marginal | 100 | 16.66667 |
 
 For an overview of the variable names, see the following table. The
 `options` column lists the levels of each categorical variable.
@@ -120,18 +104,6 @@ For an overview of the variable names, see the following table. The
 | total_liters | numeric | Total liters collected in past 24 hours using any water transport container(s) of any volume(s), derived as 25 \* containers_25l + 20 \* containers_20l + 15 \* containers_15l + 10 \* containers_10l + 5 \* containers_5l | NA |
 | liters_person | numeric | Liters collected in past 24 hours per household member (total_liters divided by household_size) | NA |
 
-Variables that were calculated in the original Excel workbook
-(`jmp_improved`, `jmp_water_service`, `total_collect_time`,
-`total_liters`, `liters_person`, `hwise_score` and
-`hwise_insecurity_level`) were recalculated in R from the raw survey
-responses and verified against the Excel values. The 12 HWISE items are
-ordered factors whose levels refer to the number of times in the last
-four weeks: Never (0), Rarely (1–2), Sometimes (3–10), Often (11–20) and
-Always (more than 20). The HWISE score sums the 12 items scored Never 0,
-Rarely 1, Sometimes 2, Often or Always 3. The insecurity levels follow
-Frongillo et al. (2024): No-to-marginal (0–2), Low (3–11), Moderate
-(12–23) and High (24–36).
-
 ## Example
 
 The example compares the JMP drinking water service level of households
@@ -143,21 +115,22 @@ library(kalaiwash)
 library(dplyr)
 
 kalaiwash |> 
-  count(survey_type, jmp_water_service) |> 
+  count(survey_type, jmp_water_service, .drop = FALSE) |> 
   group_by(survey_type) |> 
   mutate(share = round(100 * n / sum(n))) |> 
   ungroup() |> 
-  knitr::kable(col.names = c("Survey", "JMP service level", "Households", "Share (%)"))
+  select(-n) |> 
+  pivot_wider(names_from = survey_type, values_from = share) |> 
+  arrange(jmp_water_service) |> 
+  knitr::kable(col.names = c("JMP service level", "Share baseline (%)", "Share endline (%)"))
 ```
 
-| Survey   | JMP service level | Households | Share (%) |
-|:---------|:------------------|-----------:|----------:|
-| Baseline | Surface water     |         12 |         9 |
-| Baseline | Unimproved        |        101 |        77 |
-| Baseline | Limited           |         19 |        14 |
-| Endline  | Unimproved        |          3 |         2 |
-| Endline  | Limited           |         94 |        66 |
-| Endline  | Basic             |         46 |        32 |
+| JMP service level | Share baseline (%) | Share endline (%) |
+|:------------------|-------------------:|------------------:|
+| Surface water     |                  9 |                 0 |
+| Unimproved        |                 77 |                 2 |
+| Limited           |                 14 |                66 |
+| Basic             |                  0 |                32 |
 
 The share of households with at least basic drinking water service and
 the distribution of HWISE insecurity levels can be compared in the same
@@ -166,21 +139,115 @@ way.
 ``` r
 
 kalaiwash |> 
-  count(survey_type, hwise_insecurity_level) |> 
+  count(survey_type, hwise_insecurity_level, .drop = FALSE) |> 
   group_by(survey_type) |> 
   mutate(share = round(100 * n / sum(n))) |> 
   ungroup() |> 
-  knitr::kable(col.names = c("Survey", "HWISE insecurity level", "Households", "Share (%)"))
+  select(-n) |> 
+  pivot_wider(names_from = survey_type, values_from = share) |> 
+  arrange(hwise_insecurity_level) |> 
+  knitr::kable(col.names = c("HWISE insecurity level", "Share baseline (%)", "Share endline (%)"))
 ```
 
-| Survey   | HWISE insecurity level | Households | Share (%) |
-|:---------|:-----------------------|-----------:|----------:|
-| Baseline | High                   |         62 |        47 |
-| Baseline | Moderate               |         65 |        49 |
-| Baseline | Low                    |          5 |         4 |
-| Endline  | Moderate               |          4 |         3 |
-| Endline  | Low                    |          5 |         3 |
-| Endline  | No-to-marginal         |        134 |        94 |
+| HWISE insecurity level | Share baseline (%) | Share endline (%) |
+|:-----------------------|-------------------:|------------------:|
+| High                   |                 47 |                 0 |
+| Moderate               |                 49 |                 3 |
+| Low                    |                  4 |                 3 |
+| No-to-marginal         |                  0 |                94 |
+
+Figure 1 was taken from [Advancing standard WASH metrics with
+experiential indicators in
+Mozambique](https://github.com/ds4owd-002/project-johnbrogan-alt). The
+left panel shows the change in the JMP drinking water service level and
+the right panel the change in the HWISE water insecurity level between
+the baseline and the endline survey. Each band connects the share of
+households in a level at baseline with the share at endline.
+
+``` r
+
+# share of households per level and survey round, with the stacking
+# positions of each band (best level at the bottom)
+level_shares <- function(data, level) {
+  data |>
+    count(survey_type, level = {{ level }}) |>
+    group_by(survey_type) |>
+    mutate(percent = 100 * n / sum(n)) |>
+    ungroup() |>
+    complete(survey_type, level, fill = list(n = 0, percent = 0)) |>
+    mutate(level = factor(level, levels = rev(levels(level)))) |>
+    arrange(survey_type, level) |>
+    group_by(survey_type) |>
+    mutate(ymax = cumsum(percent), ymin = ymax - percent,
+           ymid = (ymin + ymax) / 2, x = as.integer(survey_type)) |>
+    ungroup()
+}
+
+# four corners of each band: baseline bottom, baseline top, endline top,
+# endline bottom
+level_bands <- function(shares) {
+  shares |>
+    select(level, x, ymin, ymax) |>
+    pivot_longer(c(ymin, ymax), names_to = "edge", values_to = "y") |>
+    arrange(level, x, if_else(x == 1, y, -y))
+}
+
+level_plot <- function(shares, colours, title, legend_title) {
+  n_surveys <- shares |>
+    group_by(survey_type) |>
+    summarise(n = sum(n), .groups = "drop")
+  labels <- shares |>
+    filter(percent > 0) |>
+    mutate(label = paste0(round(percent), "%"),
+           x = if_else(x == 1, x - 0.04, x + 0.04),
+           hjust = if_else(x < 1, 1, 0))
+
+  ggplot() +
+    geom_polygon(data = level_bands(shares),
+                 aes(x, y, group = level, fill = level),
+                 colour = "grey20", linewidth = 0.3) +
+    geom_text(data = labels, aes(x, ymid, label = label, hjust = hjust),
+              size = 3.2, colour = "grey20") +
+    scale_fill_manual(values = colours, name = legend_title) +
+    scale_x_continuous(
+      breaks = 1:2, limits = c(0.65, 2.35),
+      labels = paste0(n_surveys$survey_type, "\nn = ", n_surveys$n)
+    ) +
+    scale_y_continuous(breaks = seq(0, 100, 25), expand = expansion(c(0, 0.02))) +
+    labs(x = NULL, y = "Households (%)", title = title) +
+    theme_minimal(base_size = 12) +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor = element_blank(),
+          plot.title = element_text(size = 12, hjust = 0.5))
+}
+
+p_jmp <- kalaiwash |>
+  level_shares(jmp_water_service) |>
+  level_plot(
+    colours = c("Basic" = "#00B8EC", "Limited" = "#FFF59D",
+                "Unimproved" = "#FFB300", "Surface water" = "#E65100"),
+    title = "Drinking water", legend_title = "JMP service level"
+  ) +
+  theme(legend.position = "left")
+
+p_hwise <- kalaiwash |>
+  level_shares(hwise_insecurity_level) |>
+  level_plot(
+    colours = c("No-to-marginal" = "#0066A6", "Low" = "#00B8EC",
+                "Moderate" = "#FFB300", "High" = "#EF414A"),
+    title = "Water insecurity", legend_title = "HWISE level"
+  ) +
+  labs(y = NULL)
+
+p_jmp + p_hwise
+```
+
+![Figure 1: Changes in drinking water service and water insecurity
+experience between baseline (November 2024) and endline (June
+2025).](reference/figures/README-figure-1-1.png)
+
+Figure 1: Changes in drinking water service and water insecurity
+experience between baseline (November 2024) and endline (June 2025).
 
 ## License
 
