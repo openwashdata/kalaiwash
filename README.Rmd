@@ -51,8 +51,9 @@ You can install the development version of kalaiwash from
 devtools::install_github("openwashdata/kalaiwash")
 ```
 
-```{r}
+```{r packages, include = FALSE}
 ## Run the following code in console if you don't have the packages
+## needed to compile the README
 ## install.packages(c("dplyr", "tidyr", "ggplot2", "patchwork", "knitr", "readr", "stringr", "kableExtra"))
 library(dplyr)
 library(tidyr)
@@ -116,9 +117,16 @@ readr::read_csv("data-raw/dictionary.csv") |>
 The example compares the JMP drinking water service level of households
 between the baseline and the endline survey.
 
-```{r}
+```{r example-jmp, echo = FALSE}
+## Run the following code in console if you don't have the packages
+## needed to run the example
+## install.packages(c("dplyr", "tidyr", "knitr", "ggplot2", "patchwork"))
 library(kalaiwash)
 library(dplyr)
+library(tidyr)
+library(knitr)
+library(ggplot2)
+library(patchwork)
 
 kalaiwash |> 
   count(survey_type, jmp_water_service, .drop = FALSE) |> 
@@ -128,14 +136,22 @@ kalaiwash |>
   select(-n) |> 
   pivot_wider(names_from = survey_type, values_from = share) |> 
   arrange(jmp_water_service) |> 
-  knitr::kable(col.names = c("JMP service level", "Share baseline (%)", "Share endline (%)"))
+  kable(col.names = c("JMP service level", "Share baseline (%)", "Share endline (%)"))
 ```
+
+<details>
+<summary>Show the code</summary>
+
+```{r example-jmp-code, ref.label = "example-jmp", eval = FALSE}
+```
+
+</details>
 
 The share of households with at least basic drinking water service and
 the distribution of HWISE insecurity levels can be compared in the same
 way.
 
-```{r}
+```{r example-hwise, echo = FALSE}
 kalaiwash |> 
   count(survey_type, hwise_insecurity_level, .drop = FALSE) |> 
   group_by(survey_type) |> 
@@ -144,8 +160,16 @@ kalaiwash |>
   select(-n) |> 
   pivot_wider(names_from = survey_type, values_from = share) |> 
   arrange(hwise_insecurity_level) |> 
-  knitr::kable(col.names = c("HWISE insecurity level", "Share baseline (%)", "Share endline (%)"))
+  kable(col.names = c("HWISE insecurity level", "Share baseline (%)", "Share endline (%)"))
 ```
+
+<details>
+<summary>Show the code</summary>
+
+```{r example-hwise-code, ref.label = "example-hwise", eval = FALSE}
+```
+
+</details>
 
 Figure 1 was taken from [Advancing standard WASH metrics with experiential 
 indicators in Mozambique](https://github.com/ds4owd-002/project-johnbrogan-alt). 
@@ -154,7 +178,7 @@ right panel the change in the HWISE water insecurity level between the baseline
 and the endline survey. Each band connects the share of households in a level at
 baseline with the share at endline.
 
-```{r figure-1, fig.width = 9, fig.height = 5, fig.cap = "Figure 1: Changes in drinking water service and water insecurity experience between baseline (November 2024) and endline (June 2025)."}
+```{r figure-1, echo = FALSE, fig.width = 9, fig.height = 5, fig.cap = "Figure 1: Changes in drinking water service and water insecurity experience between baseline (November 2024) and endline (June 2025)."}
 # share of households per level and survey round, with the stacking
 # positions of each band (best level at the bottom)
 level_shares <- function(data, level) {
@@ -230,6 +254,14 @@ p_hwise <- kalaiwash |>
 
 p_jmp + p_hwise
 ```
+
+<details>
+<summary>Show the code</summary>
+
+```{r figure-1-code, ref.label = "figure-1", eval = FALSE}
+```
+
+</details>
 
 ## License
 

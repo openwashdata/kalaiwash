@@ -21,20 +21,6 @@ You can install the development version of kalaiwash from
 devtools::install_github("openwashdata/kalaiwash")
 ```
 
-``` r
-
-## Run the following code in console if you don't have the packages
-## install.packages(c("dplyr", "tidyr", "ggplot2", "patchwork", "knitr", "readr", "stringr", "kableExtra"))
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(patchwork)
-library(knitr)
-library(readr)
-library(stringr)
-library(kableExtra)
-```
-
 Alternatively, you can download the individual datasets as a CSV or XLSX
 file from the table below.
 
@@ -109,10 +95,26 @@ For an overview of the variable names, see the following table. The
 The example compares the JMP drinking water service level of households
 between the baseline and the endline survey.
 
+| JMP service level | Share baseline (%) | Share endline (%) |
+|:------------------|-------------------:|------------------:|
+| Surface water     |                  9 |                 0 |
+| Unimproved        |                 77 |                 2 |
+| Limited           |                 14 |                66 |
+| Basic             |                  0 |                32 |
+
+Show the code
+
 ``` r
 
+## Run the following code in console if you don't have the packages
+## needed to run the example
+## install.packages(c("dplyr", "tidyr", "knitr", "ggplot2", "patchwork"))
 library(kalaiwash)
 library(dplyr)
+library(tidyr)
+library(knitr)
+library(ggplot2)
+library(patchwork)
 
 kalaiwash |> 
   count(survey_type, jmp_water_service, .drop = FALSE) |> 
@@ -122,19 +124,21 @@ kalaiwash |>
   select(-n) |> 
   pivot_wider(names_from = survey_type, values_from = share) |> 
   arrange(jmp_water_service) |> 
-  knitr::kable(col.names = c("JMP service level", "Share baseline (%)", "Share endline (%)"))
+  kable(col.names = c("JMP service level", "Share baseline (%)", "Share endline (%)"))
 ```
-
-| JMP service level | Share baseline (%) | Share endline (%) |
-|:------------------|-------------------:|------------------:|
-| Surface water     |                  9 |                 0 |
-| Unimproved        |                 77 |                 2 |
-| Limited           |                 14 |                66 |
-| Basic             |                  0 |                32 |
 
 The share of households with at least basic drinking water service and
 the distribution of HWISE insecurity levels can be compared in the same
 way.
+
+| HWISE insecurity level | Share baseline (%) | Share endline (%) |
+|:-----------------------|-------------------:|------------------:|
+| High                   |                 47 |                 0 |
+| Moderate               |                 49 |                 3 |
+| Low                    |                  4 |                 3 |
+| No-to-marginal         |                  0 |                94 |
+
+Show the code
 
 ``` r
 
@@ -146,15 +150,8 @@ kalaiwash |>
   select(-n) |> 
   pivot_wider(names_from = survey_type, values_from = share) |> 
   arrange(hwise_insecurity_level) |> 
-  knitr::kable(col.names = c("HWISE insecurity level", "Share baseline (%)", "Share endline (%)"))
+  kable(col.names = c("HWISE insecurity level", "Share baseline (%)", "Share endline (%)"))
 ```
-
-| HWISE insecurity level | Share baseline (%) | Share endline (%) |
-|:-----------------------|-------------------:|------------------:|
-| High                   |                 47 |                 0 |
-| Moderate               |                 49 |                 3 |
-| Low                    |                  4 |                 3 |
-| No-to-marginal         |                  0 |                94 |
 
 Figure 1 was taken from [Advancing standard WASH metrics with
 experiential indicators in
@@ -163,6 +160,15 @@ left panel shows the change in the JMP drinking water service level and
 the right panel the change in the HWISE water insecurity level between
 the baseline and the endline survey. Each band connects the share of
 households in a level at baseline with the share at endline.
+
+![Figure 1: Changes in drinking water service and water insecurity
+experience between baseline (November 2024) and endline (June
+2025).](reference/figures/README-figure-1-1.png)
+
+Figure 1: Changes in drinking water service and water insecurity
+experience between baseline (November 2024) and endline (June 2025).
+
+Show the code
 
 ``` r
 
@@ -241,13 +247,6 @@ p_hwise <- kalaiwash |>
 
 p_jmp + p_hwise
 ```
-
-![Figure 1: Changes in drinking water service and water insecurity
-experience between baseline (November 2024) and endline (June
-2025).](reference/figures/README-figure-1-1.png)
-
-Figure 1: Changes in drinking water service and water insecurity
-experience between baseline (November 2024) and endline (June 2025).
 
 ## License
 
