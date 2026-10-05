@@ -7,7 +7,7 @@
 
 [![License: CC BY
 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
+[![R-CMD-check](https://github.com/openwashdata/kalaiwash/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/openwashdata/kalaiwash/actions/workflows/R-CMD-check.yaml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23164217.svg)](https://zenodo.org/doi/10.5281/zenodo.23164217)
 <!-- badges: end -->
 

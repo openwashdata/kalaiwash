@@ -1,7 +1,5 @@
 # kalaiwash
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23164217.svg)](https://zenodo.org/doi/10.5281/zenodo.23164217)
-
 The goal of kalaiwash is to provide the baseline and endline household
 survey data of the KALAI water, sanitation and hygiene project of
 HELVETAS in Nampula Province, Mozambique. The project was funded by
