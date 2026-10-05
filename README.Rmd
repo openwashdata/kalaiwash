@@ -101,13 +101,13 @@ library(kalaiwash)
 ### kalaiwash
 
 For an overview of the variable names, see the following table. The
-`options` column lists the levels of each categorical variable.
+Levels column lists the levels of each categorical variable.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 readr::read_csv("data-raw/dictionary.csv") |>
   dplyr::filter(file_name == "kalaiwash.rda") |>
   dplyr::select(variable_name, variable_type, description, options) |> 
-  knitr::kable() |> 
+  knitr::kable(col.names = c("Variable", "Type", "Description", "Levels")) |> 
   kableExtra::kable_styling("striped") |> 
   kableExtra::scroll_box(height = "200px")
 ```

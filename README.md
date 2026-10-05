@@ -54,7 +54,7 @@ library(kalaiwash)
 ### kalaiwash
 
 For an overview of the variable names, see the following table. The
-`options` column lists the levels of each categorical variable.
+Levels column lists the levels of each categorical variable.
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
 
@@ -66,22 +66,22 @@ For an overview of the variable names, see the following table. The
 
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 
-variable_name
+Variable
 </th>
 
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 
-variable_type
+Type
 </th>
 
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 
-description
+Description
 </th>
 
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 
-options
+Levels
 </th>
 
 </tr>
