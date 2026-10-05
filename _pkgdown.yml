@@ -1,5 +1,5 @@
 
-url: https://github.com/openwashdata/kalaiwash
+url: https://openwashdata.github.io/kalaiwash/
 template:
   bootstrap: 5
   includes:
