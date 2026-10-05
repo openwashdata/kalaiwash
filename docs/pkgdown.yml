@@ -1,8 +1,8 @@
-pandoc: 3.8.3
+pandoc: '3.10'
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2026-10-05T13:40Z
+last_built: 2026-10-05T13:52Z
 urls:
   reference: https://github.com/openwashdata/kalaiwash/reference
   article: https://github.com/openwashdata/kalaiwash/articles

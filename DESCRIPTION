@@ -1,6 +1,6 @@
 Package: kalaiwash
 Title: Household Water Insecurity and Drinking Water Service Levels from the KALAI Project in Nampula, Mozambique
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("John", "Brogan", , "john.brogan.pro@gmail.com", role = "aut"),
     person("Adriana", "Clavijo Daza", , "aclavijo@ethz.ch", role = "cre",
@@ -24,6 +24,6 @@ Depends:
 LazyData: true
 Language: en-GB
 Config/Needs/website: rmarkdown
-Date: 2026-10-02
+Date: 2026-10-05
 URL: https://github.com/openwashdata/kalaiwash
 BugReports: https://github.com/openwashdata/kalaiwash/issues

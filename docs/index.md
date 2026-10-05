@@ -274,7 +274,7 @@ citation("kalaiwash")
 #>     year = {2026},
 #>     url = {https://github.com/openwashdata/kalaiwash},
 #>     abstract = {Baseline (November 2024) and endline (June 2025) household survey data from the KALAI water, sanitation and hygiene project of HELVETAS in Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique. The data cover 275 household interviews and include the primary drinking water source classified with the WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, water collection times and volumes, sanitation and handwashing practices, and the 12-item Household Water Insecurity Experiences (HWISE) Scale with its summary score and insecurity level.},
-#>     version = {0.0.0.9000},
+#>     version = {0.1.0},
 #>   }
 ```
 
