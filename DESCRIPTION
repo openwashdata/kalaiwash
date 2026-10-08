@@ -5,7 +5,7 @@ Authors@R: c(
     person("John", "Brogan", , "john.brogan.pro@gmail.com", role = "aut"),
     person("Adriana", "Clavijo Daza", , "aclavijo@ethz.ch", role = "cre",
            comment = c(ORCID = "0009-0002-0589-2274")),
-    person("Dercio", "Obra", role = "ctb")
+    person("Dercio", "Obra", role = "aut")
   )
 Description: Baseline (November 2024) and endline (June 2025) household survey
     data from the KALAI water, sanitation and hygiene project of HELVETAS in
