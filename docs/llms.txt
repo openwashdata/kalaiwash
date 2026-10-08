@@ -45,9 +45,9 @@ library(kalaiwash)
 ### kalaiwash
 
 For an overview of the variable names, see the following table. The
-`options` column lists the levels of each categorical variable.
+Levels column lists the levels of each categorical variable.
 
-| variable_name | variable_type | description | options |
+| Variable | Type | Description | Levels |
 |:---|:---|:---|:---|
 | survey_date | Date | Date of the interview | NA |
 | survey_type | factor | Survey round: Baseline (November 2024) or Endline (June 2025) | Baseline; Endline |
@@ -56,14 +56,8 @@ For an overview of the variable names, see the following table. The
 | gender | factor | Whether the respondent is male or female | Female; Male |
 | household_size | numeric | The number of people living and eating together in the household including the respondent | NA |
 | source | factor | Household’s primary drinking water source | Borehole with handpump; Protected dug well; Protected dug well with handpump; Public tap or standpipe; Unprotected dug well; Unprotected spring; Surface water |
-| jmp_improved | factor | If the Water source is “improved” or “unimproved” according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise | Unimproved; Improved |
-| jmp_water_service | factor | JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less) | Surface water; Unimproved; Limited; Basic |
 | collect_yesterday | factor | If anyone in the household collected drinking water yesterday | No; Yes |
-| containers_25l | numeric | Number of 25 liter containers used to collect water yesterday | NA |
-| containers_20l | numeric | Number of 20 liter containers used to collect water yesterday | NA |
-| containers_15l | numeric | Number of 15 liter containers used to collect water yesterday | NA |
-| containers_10l | numeric | Number of 10 liter containers used to collect water yesterday | NA |
-| containers_5l | numeric | Number of 5 liter containers used to collect water yesterday | NA |
+| total_liters | numeric | Total liters collected in past 24 hours, derived from the number of 25, 20, 15, 10 and 5 liter containers used to collect water yesterday | NA |
 | oneway_travel | numeric | Estimate of how long household member had to walk to get to the water source in minutes (not round-trip) | NA |
 | wait_time | numeric | The last time household member went to the source, estimate of how long to wait to collect water from the source in minutes | NA |
 | total_collect_time | numeric | Total collection time in minutes: twice the one-way walk (oneway_travel) plus the wait time (wait_time) | NA |
@@ -73,6 +67,8 @@ For an overview of the variable names, see the following table. The
 | handwash_demo | factor | Willing to show where and how handwashing happens | No; Yes |
 | soap_ash | factor | Household demo uses soap or ash or another cleanser to wash hands | Soap; Ash; Other cleanser or detergent; None shown |
 | water_wash | factor | Household demo uses water to wash hands | No; Yes |
+| jmp_improved | factor | If the Water source is “improved” or “unimproved” according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise | Unimproved; Improved |
+| jmp_water_service | factor | JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less) | Surface water; Unimproved; Limited; Basic |
 | hwise_worry | ordered, factor | In the last 4 weeks, how frequently did you or anyone in your household worry you would not have enough water for all of your household needs? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
 | hwise_interrupt | ordered, factor | In the last 4 weeks, how frequently has your main water source been interrupted or limited (e.g. water pressure, less water than expected, river dried up)? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
 | hwise_clothes | ordered, factor | In the last 4 weeks, how frequently have problems with water meant that clothes could not be washed? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
@@ -87,8 +83,6 @@ For an overview of the variable names, see the following table. The
 | hwise_shame | ordered, factor | In the last 4 weeks, how frequently did you or anyone in your household feel ashamed/excluded/stigmatized? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
 | hwise_score | numeric | Sum of the 12 HWISE items scored Never 0, Rarely 1, Sometimes 2, Often or Always 3; range 0 to 36 | NA |
 | hwise_insecurity_level | factor | Water insecurity level from hwise_score: 0 to 2 “No-to-marginal”, 3 to 11 “Low”, 12 to 23 “Moderate”, 24 to 36 “High” | High; Moderate; Low; No-to-marginal |
-| total_liters | numeric | Total liters collected in past 24 hours using any water transport container(s) of any volume(s), derived as 25 \* containers_25l + 20 \* containers_20l + 15 \* containers_15l + 10 \* containers_10l + 5 \* containers_5l | NA |
-| liters_person | numeric | Liters collected in past 24 hours per household member (total_liters divided by household_size) | NA |
 
 ## Example
 
@@ -262,7 +256,7 @@ Please cite this package using:
 citation("kalaiwash")
 #> To cite package 'kalaiwash' in publications use:
 #> 
-#>   Brogan J, Clavijo Daza A (2026). "kalaiwash: Household Water
+#>   Brogan J, Clavijo Daza A, Obra D (2026). "kalaiwash: Household Water
 #>   Insecurity and Drinking Water Service Levels from the KALAI Project
 #>   in Nampula, Mozambique." doi:10.5281/zenodo.23164217
 #>   <https://doi.org/10.5281/zenodo.23164217>.
@@ -272,7 +266,7 @@ citation("kalaiwash")
 #> 
 #>   @Misc{brogan_etall:2026,
 #>     title = {kalaiwash: Household Water Insecurity and Drinking Water Service Levels from the KALAI Project in Nampula, Mozambique},
-#>     author = {John Brogan and Adriana {Clavijo Daza}},
+#>     author = {John Brogan and Adriana {Clavijo Daza} and Dercio Obra},
 #>     year = {2026},
 #>     doi = {10.5281/zenodo.23164217},
 #>     url = {https://github.com/openwashdata/kalaiwash},

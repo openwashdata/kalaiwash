@@ -14,7 +14,7 @@
 #' recalculated in R from the raw survey responses and checked against the
 #' original Excel calculations; see `data-raw/data_processing.R`.
 #'
-#' @format A tibble with 275 rows and 40 variables
+#' @format A tibble with 275 rows and 34 variables
 #' \describe{
 #'   \item{survey_date}{Date of the interview}
 #'   \item{survey_type}{Survey round: Baseline (November 2024) or Endline (June 2025)}
@@ -23,14 +23,8 @@
 #'   \item{gender}{Whether the respondent is male or female}
 #'   \item{household_size}{The number of people living and eating together in the household including the respondent}
 #'   \item{source}{Household's primary drinking water source}
-#'   \item{jmp_improved}{If the Water source is "improved" or "unimproved" according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise}
-#'   \item{jmp_water_service}{JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less)}
 #'   \item{collect_yesterday}{If anyone in the household collected drinking water yesterday}
-#'   \item{containers_25l}{Number of 25 liter containers used to collect water yesterday}
-#'   \item{containers_20l}{Number of 20 liter containers used to collect water yesterday}
-#'   \item{containers_15l}{Number of 15 liter containers used to collect water yesterday}
-#'   \item{containers_10l}{Number of 10 liter containers used to collect water yesterday}
-#'   \item{containers_5l}{Number of 5 liter containers used to collect water yesterday}
+#'   \item{total_liters}{Total liters collected in past 24 hours, derived from the number of 25, 20, 15, 10 and 5 liter containers used to collect water yesterday}
 #'   \item{oneway_travel}{Estimate of how long household member had to walk to get to the water source in minutes (not round-trip)}
 #'   \item{wait_time}{The last time household member went to the source, estimate of how long to wait to collect water from the source in minutes}
 #'   \item{total_collect_time}{Total collection time in minutes: twice the one-way walk (oneway_travel) plus the wait time (wait_time)}
@@ -40,6 +34,8 @@
 #'   \item{handwash_demo}{Willing to show where and how handwashing happens}
 #'   \item{soap_ash}{Household demo uses soap or ash or another cleanser to wash hands}
 #'   \item{water_wash}{Household demo uses water to wash hands}
+#'   \item{jmp_improved}{If the Water source is "improved" or "unimproved" according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise}
+#'   \item{jmp_water_service}{JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less)}
 #'   \item{hwise_worry}{In the last 4 weeks, how frequently did you or anyone in your household worry you would not have enough water for all of your household needs?}
 #'   \item{hwise_interrupt}{In the last 4 weeks, how frequently has your main water source been interrupted or limited (e.g. water pressure, less water than expected, river dried up)?}
 #'   \item{hwise_clothes}{In the last 4 weeks, how frequently have problems with water meant that clothes could not be washed?}
@@ -54,7 +50,5 @@
 #'   \item{hwise_shame}{In the last 4 weeks, how frequently did you or anyone in your household feel ashamed/excluded/stigmatized?}
 #'   \item{hwise_score}{Sum of the 12 HWISE items scored Never 0, Rarely 1, Sometimes 2, Often or Always 3; range 0 to 36}
 #'   \item{hwise_insecurity_level}{Water insecurity level from hwise_score: 0 to 2 "No-to-marginal", 3 to 11 "Low", 12 to 23 "Moderate", 24 to 36 "High"}
-#'   \item{total_liters}{Total liters collected in past 24 hours using any water transport container(s) of any volume(s), derived as 25 * containers_25l + 20 * containers_20l + 15 * containers_15l + 10 * containers_10l + 5 * containers_5l}
-#'   \item{liters_person}{Liters collected in past 24 hours per household member (total_liters divided by household_size)}
 #' }
 "kalaiwash"

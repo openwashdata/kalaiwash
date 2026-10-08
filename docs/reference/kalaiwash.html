@@ -79,7 +79,7 @@ original Excel calculations; see <code>data-raw/data_processing.R</code>.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with 275 rows and 40 variables</p><dl><dt>survey_date</dt>
+    <p>A tibble with 275 rows and 34 variables</p><dl><dt>survey_date</dt>
 <dd><p>Date of the interview</p></dd>
 
 <dt>survey_type</dt>
@@ -100,29 +100,11 @@ original Excel calculations; see <code>data-raw/data_processing.R</code>.</p>
 <dt>source</dt>
 <dd><p>Household's primary drinking water source</p></dd>
 
-<dt>jmp_improved</dt>
-<dd><p>If the Water source is "improved" or "unimproved" according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise</p></dd>
-
-<dt>jmp_water_service</dt>
-<dd><p>JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less)</p></dd>
-
 <dt>collect_yesterday</dt>
 <dd><p>If anyone in the household collected drinking water yesterday</p></dd>
 
-<dt>containers_25l</dt>
-<dd><p>Number of 25 liter containers used to collect water yesterday</p></dd>
-
-<dt>containers_20l</dt>
-<dd><p>Number of 20 liter containers used to collect water yesterday</p></dd>
-
-<dt>containers_15l</dt>
-<dd><p>Number of 15 liter containers used to collect water yesterday</p></dd>
-
-<dt>containers_10l</dt>
-<dd><p>Number of 10 liter containers used to collect water yesterday</p></dd>
-
-<dt>containers_5l</dt>
-<dd><p>Number of 5 liter containers used to collect water yesterday</p></dd>
+<dt>total_liters</dt>
+<dd><p>Total liters collected in past 24 hours, derived from the number of 25, 20, 15, 10 and 5 liter containers used to collect water yesterday</p></dd>
 
 <dt>oneway_travel</dt>
 <dd><p>Estimate of how long household member had to walk to get to the water source in minutes (not round-trip)</p></dd>
@@ -150,6 +132,12 @@ original Excel calculations; see <code>data-raw/data_processing.R</code>.</p>
 
 <dt>water_wash</dt>
 <dd><p>Household demo uses water to wash hands</p></dd>
+
+<dt>jmp_improved</dt>
+<dd><p>If the Water source is "improved" or "unimproved" according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise</p></dd>
+
+<dt>jmp_water_service</dt>
+<dd><p>JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less)</p></dd>
 
 <dt>hwise_worry</dt>
 <dd><p>In the last 4 weeks, how frequently did you or anyone in your household worry you would not have enough water for all of your household needs?</p></dd>
@@ -192,12 +180,6 @@ original Excel calculations; see <code>data-raw/data_processing.R</code>.</p>
 
 <dt>hwise_insecurity_level</dt>
 <dd><p>Water insecurity level from hwise_score: 0 to 2 "No-to-marginal", 3 to 11 "Low", 12 to 23 "Moderate", 24 to 36 "High"</p></dd>
-
-<dt>total_liters</dt>
-<dd><p>Total liters collected in past 24 hours using any water transport container(s) of any volume(s), derived as 25 * containers_25l + 20 * containers_20l + 15 * containers_15l + 10 * containers_10l + 5 * containers_5l</p></dd>
-
-<dt>liters_person</dt>
-<dd><p>Liters collected in past 24 hours per household member (total_liters divided by household_size)</p></dd>
 
 
 </dl></div>

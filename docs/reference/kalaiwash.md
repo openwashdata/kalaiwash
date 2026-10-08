@@ -23,7 +23,7 @@ kalaiwash
 
 ## Format
 
-A tibble with 275 rows and 40 variables
+A tibble with 275 rows and 34 variables
 
 - survey_date:
 
@@ -54,45 +54,14 @@ A tibble with 275 rows and 40 variables
 
   Household's primary drinking water source
 
-- jmp_improved:
-
-  If the Water source is "improved" or "unimproved" according to the JMP
-  classification, derived from source: Improved for borehole with
-  handpump, protected dug well (with or without handpump), public tap or
-  standpipe, mechanized borehole, protected spring and piped water;
-  Unimproved otherwise
-
-- jmp_water_service:
-
-  JMP drinking water service level derived from source and
-  total_collect_time: Surface water; Unimproved (other unimproved
-  source); Limited (improved source, total collection time over 30
-  minutes); Basic (improved source, total collection time of 30 minutes
-  or less)
-
 - collect_yesterday:
 
   If anyone in the household collected drinking water yesterday
 
-- containers_25l:
+- total_liters:
 
-  Number of 25 liter containers used to collect water yesterday
-
-- containers_20l:
-
-  Number of 20 liter containers used to collect water yesterday
-
-- containers_15l:
-
-  Number of 15 liter containers used to collect water yesterday
-
-- containers_10l:
-
-  Number of 10 liter containers used to collect water yesterday
-
-- containers_5l:
-
-  Number of 5 liter containers used to collect water yesterday
+  Total liters collected in past 24 hours, derived from the number of
+  25, 20, 15, 10 and 5 liter containers used to collect water yesterday
 
 - oneway_travel:
 
@@ -132,6 +101,22 @@ A tibble with 275 rows and 40 variables
 - water_wash:
 
   Household demo uses water to wash hands
+
+- jmp_improved:
+
+  If the Water source is "improved" or "unimproved" according to the JMP
+  classification, derived from source: Improved for borehole with
+  handpump, protected dug well (with or without handpump), public tap or
+  standpipe, mechanized borehole, protected spring and piped water;
+  Unimproved otherwise
+
+- jmp_water_service:
+
+  JMP drinking water service level derived from source and
+  total_collect_time: Surface water; Unimproved (other unimproved
+  source); Limited (improved source, total collection time over 30
+  minutes); Basic (improved source, total collection time of 30 minutes
+  or less)
 
 - hwise_worry:
 
@@ -211,15 +196,3 @@ A tibble with 275 rows and 40 variables
 
   Water insecurity level from hwise_score: 0 to 2 "No-to-marginal", 3 to
   11 "Low", 12 to 23 "Moderate", 24 to 36 "High"
-
-- total_liters:
-
-  Total liters collected in past 24 hours using any water transport
-  container(s) of any volume(s), derived as 25 \* containers_25l + 20 \*
-  containers_20l + 15 \* containers_15l + 10 \* containers_10l + 5 \*
-  containers_5l
-
-- liters_person:
-
-  Liters collected in past 24 hours per household member (total_liters
-  divided by household_size)

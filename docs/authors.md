@@ -7,22 +7,22 @@
 - **Adriana Clavijo Daza**. Maintainer.
   [](https://orcid.org/0009-0002-0589-2274)
 
-- **Dercio Obra**. Contributor.
+- **Dercio Obra**. Author.
 
 ## Citation
 
 Source:
 [`inst/CITATION`](https://github.com/openwashdata/kalaiwash/blob/HEAD/inst/CITATION)
 
-Brogan J, Clavijo Daza A (2026). “kalaiwash: Household Water Insecurity
-and Drinking Water Service Levels from the KALAI Project in Nampula,
-Mozambique.”
+Brogan J, Clavijo Daza A, Obra D (2026). “kalaiwash: Household Water
+Insecurity and Drinking Water Service Levels from the KALAI Project in
+Nampula, Mozambique.”
 [doi:10.5281/zenodo.23164217](https://doi.org/10.5281/zenodo.23164217).
 <https://github.com/openwashdata/kalaiwash>.
 
     @Misc{brogan_etall:2026,
       title = {kalaiwash: Household Water Insecurity and Drinking Water Service Levels from the KALAI Project in Nampula, Mozambique},
-      author = {John Brogan and Adriana {Clavijo Daza}},
+      author = {John Brogan and Adriana {Clavijo Daza} and Dercio Obra},
       year = {2026},
       doi = {10.5281/zenodo.23164217},
       url = {https://github.com/openwashdata/kalaiwash},

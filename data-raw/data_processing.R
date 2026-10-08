@@ -19,8 +19,9 @@ raw_data <- read_excel(
 # Tidy data --------------------------------------------------------------------
 
 # whether_improved, hwise_score, insecurity_level, total_collect_time,
-# total_liters, liters_person and the JMP water_* indicators are calculated in
-# the raw Excel file; they are dropped here and recalculated in transformed_data
+# total_liters and the JMP water_* indicators are calculated in the raw Excel
+# file; they are dropped here and recalculated in transformed_data.
+# liters_person is dropped and not recalculated.
 clean_data <- raw_data |>
   janitor::clean_names() |>
   select(-code, -container_size, -handwashing_basic,
@@ -127,8 +128,10 @@ transformed_data <- clean_data |>
   mutate(
     total_liters = 25 * containers_25l + 20 * containers_20l +
       15 * containers_15l + 10 * containers_10l + 5 * containers_5l,
-    liters_person = total_liters / household_size
-  )
+    .after = collect_yesterday
+  ) |>
+  # the container counts are only used to derive total_liters
+  select(-starts_with("containers_"))
 
 # --- HWISE items as ordered factors with short labels ---
 hwise_levels <- c(
@@ -144,14 +147,13 @@ kalaiwash <- transformed_data |>
     across(all_of(hwise_cols),
            ~ factor(hwise_levels[.x], levels = hwise_levels, ordered = TRUE)),
     notsatisfied_why = recode(notsatisfied_why, "Other (please specify)" = "Other")
-  )
+  ) |>
+  relocate(jmp_improved, jmp_water_service, .before = hwise_worry)
 
 # Export Data ------------------------------------------------------------------
 usethis::use_data(kalaiwash, overwrite = TRUE)
 fs::dir_create(here::here("inst", "extdata"))
-kalaiwash_export <- kalaiwash |>
-  mutate(liters_person = round(liters_person, 2))
-readr::write_csv(kalaiwash_export,
+readr::write_csv(kalaiwash,
                  here::here("inst", "extdata", paste0("kalaiwash", ".csv")))
-openxlsx::write.xlsx(kalaiwash_export,
+openxlsx::write.xlsx(kalaiwash,
                      here::here("inst", "extdata", paste0("kalaiwash", ".xlsx")))

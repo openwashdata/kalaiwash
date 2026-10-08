@@ -266,61 +266,6 @@ spring; Surface water
 
 <td style="text-align:left;">
 
-jmp_improved
-</td>
-
-<td style="text-align:left;">
-
-factor
-</td>
-
-<td style="text-align:left;">
-
-If the Water source is “improved” or “unimproved” according to the JMP
-classification, derived from source: Improved for borehole with
-handpump, protected dug well (with or without handpump), public tap or
-standpipe, mechanized borehole, protected spring and piped water;
-Unimproved otherwise
-</td>
-
-<td style="text-align:left;">
-
-Unimproved; Improved
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-jmp_water_service
-</td>
-
-<td style="text-align:left;">
-
-factor
-</td>
-
-<td style="text-align:left;">
-
-JMP drinking water service level derived from source and
-total_collect_time: Surface water; Unimproved (other unimproved source);
-Limited (improved source, total collection time over 30 minutes); Basic
-(improved source, total collection time of 30 minutes or less)
-</td>
-
-<td style="text-align:left;">
-
-Surface water; Unimproved; Limited; Basic
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
 collect_yesterday
 </td>
 
@@ -345,7 +290,7 @@ No; Yes
 
 <td style="text-align:left;">
 
-containers_25l
+total_liters
 </td>
 
 <td style="text-align:left;">
@@ -355,103 +300,8 @@ numeric
 
 <td style="text-align:left;">
 
-Number of 25 liter containers used to collect water yesterday
-</td>
-
-<td style="text-align:left;">
-
-NA
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-containers_20l
-</td>
-
-<td style="text-align:left;">
-
-numeric
-</td>
-
-<td style="text-align:left;">
-
-Number of 20 liter containers used to collect water yesterday
-</td>
-
-<td style="text-align:left;">
-
-NA
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-containers_15l
-</td>
-
-<td style="text-align:left;">
-
-numeric
-</td>
-
-<td style="text-align:left;">
-
-Number of 15 liter containers used to collect water yesterday
-</td>
-
-<td style="text-align:left;">
-
-NA
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-containers_10l
-</td>
-
-<td style="text-align:left;">
-
-numeric
-</td>
-
-<td style="text-align:left;">
-
-Number of 10 liter containers used to collect water yesterday
-</td>
-
-<td style="text-align:left;">
-
-NA
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-containers_5l
-</td>
-
-<td style="text-align:left;">
-
-numeric
-</td>
-
-<td style="text-align:left;">
-
-Number of 5 liter containers used to collect water yesterday
+Total liters collected in past 24 hours, derived from the number of 25,
+20, 15, 10 and 5 liter containers used to collect water yesterday
 </td>
 
 <td style="text-align:left;">
@@ -678,6 +528,61 @@ Household demo uses water to wash hands
 <td style="text-align:left;">
 
 No; Yes
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jmp_improved
+</td>
+
+<td style="text-align:left;">
+
+factor
+</td>
+
+<td style="text-align:left;">
+
+If the Water source is “improved” or “unimproved” according to the JMP
+classification, derived from source: Improved for borehole with
+handpump, protected dug well (with or without handpump), public tap or
+standpipe, mechanized borehole, protected spring and piped water;
+Unimproved otherwise
+</td>
+
+<td style="text-align:left;">
+
+Unimproved; Improved
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+jmp_water_service
+</td>
+
+<td style="text-align:left;">
+
+factor
+</td>
+
+<td style="text-align:left;">
+
+JMP drinking water service level derived from source and
+total_collect_time: Surface water; Unimproved (other unimproved source);
+Limited (improved source, total collection time over 30 minutes); Basic
+(improved source, total collection time of 30 minutes or less)
+</td>
+
+<td style="text-align:left;">
+
+Surface water; Unimproved; Limited; Basic
 </td>
 
 </tr>
@@ -1051,58 +956,6 @@ High; Moderate; Low; No-to-marginal
 
 </tr>
 
-<tr>
-
-<td style="text-align:left;">
-
-total_liters
-</td>
-
-<td style="text-align:left;">
-
-numeric
-</td>
-
-<td style="text-align:left;">
-
-Total liters collected in past 24 hours using any water transport
-container(s) of any volume(s), derived as 25 \* containers_25l + 20 \*
-containers_20l + 15 \* containers_15l + 10 \* containers_10l + 5 \*
-containers_5l
-</td>
-
-<td style="text-align:left;">
-
-NA
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-liters_person
-</td>
-
-<td style="text-align:left;">
-
-numeric
-</td>
-
-<td style="text-align:left;">
-
-Liters collected in past 24 hours per household member (total_liters
-divided by household_size)
-</td>
-
-<td style="text-align:left;">
-
-NA
-</td>
-
-</tr>
-
 </tbody>
 
 </table>
@@ -1302,7 +1155,7 @@ Please cite this package using:
 citation("kalaiwash")
 #> To cite package 'kalaiwash' in publications use:
 #> 
-#>   Brogan J, Clavijo Daza A (2026). "kalaiwash: Household Water
+#>   Brogan J, Clavijo Daza A, Obra D (2026). "kalaiwash: Household Water
 #>   Insecurity and Drinking Water Service Levels from the KALAI Project
 #>   in Nampula, Mozambique." doi:10.5281/zenodo.23164217
 #>   <https://doi.org/10.5281/zenodo.23164217>.
@@ -1312,7 +1165,7 @@ citation("kalaiwash")
 #> 
 #>   @Misc{brogan_etall:2026,
 #>     title = {kalaiwash: Household Water Insecurity and Drinking Water Service Levels from the KALAI Project in Nampula, Mozambique},
-#>     author = {John Brogan and Adriana {Clavijo Daza}},
+#>     author = {John Brogan and Adriana {Clavijo Daza} and Dercio Obra},
 #>     year = {2026},
 #>     doi = {10.5281/zenodo.23164217},
 #>     url = {https://github.com/openwashdata/kalaiwash},
