@@ -1,5 +1,7 @@
 # kalaiwash
 
+A data package published by [openwashdata](https://openwashdata.org).
+
 The goal of kalaiwash is to provide the baseline and endline household
 survey data of the KALAI water, sanitation and hygiene project of
 HELVETAS in Nampula Province, Mozambique. The project was funded by
