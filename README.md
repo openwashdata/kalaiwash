@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# kalaiwash
+# kalaiwash <a href="https://openwashdata.org"><img src="man/figures/logo.png" align="right" width="120" alt="openwashdata" /></a>
 
 <!-- badges: start -->
 
@@ -10,8 +10,6 @@
 [![R-CMD-check](https://github.com/openwashdata/kalaiwash/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/openwashdata/kalaiwash/actions/workflows/R-CMD-check.yaml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23164217.svg)](https://zenodo.org/doi/10.5281/zenodo.23164217)
 <!-- badges: end -->
-
-A data package published by [openwashdata](https://openwashdata.org).
 
 The goal of kalaiwash is to provide the baseline and endline household
 survey data of the KALAI water, sanitation and hygiene project of
@@ -1150,6 +1148,8 @@ Data are available as
 [CC-BY](https://github.com/openwashdata/kalaiwash/blob/main/LICENSE.md).
 
 ## Citation
+
+Published by openwashdata, <https://openwashdata.org>.
 
 Please cite this package using:
 
