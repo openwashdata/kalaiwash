@@ -30,7 +30,7 @@
 #'   \item{total_collect_time}{Total collection time in minutes: twice the one-way walk (oneway_travel) plus the wait time (wait_time)}
 #'   \item{satisfied}{Whether the respondent is satisfied with the water service}
 #'   \item{notsatisfied_why}{Why not satisfied with your water service}
-#'   \item{defecation_place}{The places that adult men and women in this household defecate}
+#'   \item{defecation_place}{The places where adult men and women defecate and where children's faeces are disposed of within the household}
 #'   \item{handwash_demo}{Willing to show where and how handwashing happens}
 #'   \item{soap_ash}{Household demo uses soap or ash or another cleanser to wash hands}
 #'   \item{water_wash}{Household demo uses water to wash hands}

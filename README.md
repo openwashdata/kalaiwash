@@ -451,7 +451,8 @@ factor
 
 <td style="text-align:left;">
 
-The places that adult men and women in this household defecate
+The places where adult men and women defecate and where children’s
+faeces are disposed of within the household
 </td>
 
 <td style="text-align:left;">
