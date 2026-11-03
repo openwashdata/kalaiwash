@@ -3,7 +3,7 @@
 \docType{data}
 \name{kalaiwash}
 \alias{kalaiwash}
-\title{kalaiwash: Household water insecurity and drinking water service levels from the KALAI project in Nampula, Mozambique}
+\title{kalaiwash: Household water insecurity and drinking water service levels from the Kalai project in Nampula, Mozambique}
 \format{
 A tibble with 275 rows and 34 variables
 \describe{
@@ -48,7 +48,7 @@ kalaiwash
 }
 \description{
 Baseline (November 2024) and endline (June 2025) household survey data from
-the KALAI water, sanitation and hygiene project of HELVETAS in Larde, Memba,
+the Kalai water, sanitation and hygiene project of HELVETAS in Larde, Memba,
 Moma and Mecuburi districts, Nampula Province, Mozambique. Each row is one
 household interview. Variables cover the primary drinking water source and
 its WHO/UNICEF Joint Monitoring Programme (JMP) service level, water

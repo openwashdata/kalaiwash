@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of kalaiwash is to provide the baseline and endline household
-survey data of the KALAI water, sanitation and hygiene project of
+survey data of the Kalai water, sanitation and hygiene project of
 HELVETAS in Nampula Province, Mozambique. The project was funded by
 charity: water. In the local context, "Kalai" means "for a very long
 time" or "long-lasting", reflecting the project's objective of
