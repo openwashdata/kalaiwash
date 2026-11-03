@@ -33,9 +33,12 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of kalaiwash is to provide the baseline and endline household
-survey data of the KALAI water, sanitation and hygiene project of
+survey data of the Kalai water, sanitation and hygiene project of
 HELVETAS in Nampula Province, Mozambique. The project was funded by
-charity. Baseline data were collected in November 2024 and
+charity: water. In the local context, "Kalai" means "for a very long
+time" or "long-lasting", reflecting the project's objective of
+providing sustainable and long-lasting water services. Baseline data
+were collected in November 2024 and
 endline data in June 2025 in the districts of Larde, Memba, Moma and
 Mecuburi. The data describe drinking water sources classified with the
 WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, and

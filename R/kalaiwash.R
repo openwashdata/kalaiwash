@@ -1,7 +1,7 @@
-#' kalaiwash: Household water insecurity and drinking water service levels from the KALAI project in Nampula, Mozambique
+#' kalaiwash: Household water insecurity and drinking water service levels from the Kalai project in Nampula, Mozambique
 #'
 #' Baseline (November 2024) and endline (June 2025) household survey data from
-#' the KALAI water, sanitation and hygiene project of HELVETAS in Larde, Memba,
+#' the Kalai water, sanitation and hygiene project of HELVETAS in Larde, Memba,
 #' Moma and Mecuburi districts, Nampula Province, Mozambique. Each row is one
 #' household interview. Variables cover the primary drinking water source and
 #' its WHO/UNICEF Joint Monitoring Programme (JMP) service level, water
@@ -30,7 +30,7 @@
 #'   \item{total_collect_time}{Total collection time in minutes: twice the one-way walk (oneway_travel) plus the wait time (wait_time)}
 #'   \item{satisfied}{Whether the respondent is satisfied with the water service}
 #'   \item{notsatisfied_why}{Why not satisfied with your water service}
-#'   \item{defecation_place}{The places that adult men and women in this household defecate}
+#'   \item{defecation_place}{The places where adult men and women defecate and where children's faeces are disposed of within the household}
 #'   \item{handwash_demo}{Willing to show where and how handwashing happens}
 #'   \item{soap_ash}{Household demo uses soap or ash or another cleanser to wash hands}
 #'   \item{water_wash}{Household demo uses water to wash hands}

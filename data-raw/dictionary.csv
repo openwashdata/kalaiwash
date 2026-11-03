@@ -13,7 +13,7 @@ data/,kalaiwash.rda,wait_time,numeric,"The last time household member went to th
 data/,kalaiwash.rda,total_collect_time,numeric,Total collection time in minutes: twice the one-way walk (oneway_travel) plus the wait time (wait_time),
 data/,kalaiwash.rda,satisfied,factor,Whether the respondent is satisfied with the water service,Not Satisfied; Satisfied
 data/,kalaiwash.rda,notsatisfied_why,factor,Why not satisfied with your water service,"It is broken; It is too expensive; It is too far away; Long lines; Other; Water has a bad smell, color, or quality; Water tastes bad"
-data/,kalaiwash.rda,defecation_place,factor,The places that adult men and women in this household defecate,Latrine/toilet; In the open/no sanitation facilities; In water body: river or lake
+data/,kalaiwash.rda,defecation_place,factor,The places where adult men and women defecate and where children's faeces are disposed of within the household,Latrine/toilet; In the open/no sanitation facilities; In water body: river or lake
 data/,kalaiwash.rda,handwash_demo,factor,Willing to show where and how handwashing happens,No; Yes
 data/,kalaiwash.rda,soap_ash,factor,Household demo uses soap or ash or another cleanser to wash hands,Soap; Ash; Other cleanser or detergent; None shown
 data/,kalaiwash.rda,water_wash,factor,Household demo uses water to wash hands,No; Yes

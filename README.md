@@ -12,14 +12,16 @@
 <!-- badges: end -->
 
 The goal of kalaiwash is to provide the baseline and endline household
-survey data of the KALAI water, sanitation and hygiene project of
+survey data of the Kalai water, sanitation and hygiene project of
 HELVETAS in Nampula Province, Mozambique. The project was funded by
-charity. Baseline data were collected in November 2024 and endline data
-in June 2025 in the districts of Larde, Memba, Moma and Mecuburi. The
-data describe drinking water sources classified with the WHO/UNICEF
-Joint Monitoring Programme (JMP) service ladder, and household water
-insecurity measured with the 12-item Household Water Insecurity
-Experiences (HWISE) Scale.
+charity: water. In the local context, “Kalai” means “for a very long
+time” or “long-lasting”, reflecting the project’s objective of providing
+sustainable and long-lasting water services. Baseline data were
+collected in November 2024 and endline data in June 2025 in the
+districts of Larde, Memba, Moma and Mecuburi. The data describe drinking
+water sources classified with the WHO/UNICEF Joint Monitoring Programme
+(JMP) service ladder, and household water insecurity measured with the
+12-item Household Water Insecurity Experiences (HWISE) Scale.
 
 ## Installation
 
@@ -449,7 +451,8 @@ factor
 
 <td style="text-align:left;">
 
-The places that adult men and women in this household defecate
+The places where adult men and women defecate and where children’s
+faeces are disposed of within the household
 </td>
 
 <td style="text-align:left;">
@@ -1158,7 +1161,7 @@ citation("kalaiwash")
 #> To cite package 'kalaiwash' in publications use:
 #> 
 #>   Brogan J, Clavijo Daza A, Obra D (2026). "kalaiwash: Household Water
-#>   Insecurity and Drinking Water Service Levels from the KALAI Project
+#>   Insecurity and Drinking Water Service Levels from the Kalai Project
 #>   in Nampula, Mozambique." doi:10.5281/zenodo.23164217
 #>   <https://doi.org/10.5281/zenodo.23164217>.
 #>   <https://github.com/openwashdata/kalaiwash>.
@@ -1166,12 +1169,12 @@ citation("kalaiwash")
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Misc{brogan_etall:2026,
-#>     title = {kalaiwash: Household Water Insecurity and Drinking Water Service Levels from the KALAI Project in Nampula, Mozambique},
+#>     title = {kalaiwash: Household Water Insecurity and Drinking Water Service Levels from the Kalai Project in Nampula, Mozambique},
 #>     author = {John Brogan and Adriana {Clavijo Daza} and Dercio Obra},
 #>     year = {2026},
 #>     doi = {10.5281/zenodo.23164217},
 #>     url = {https://github.com/openwashdata/kalaiwash},
-#>     abstract = {Baseline (November 2024) and endline (June 2025) household survey data from the KALAI water, sanitation and hygiene project of HELVETAS in Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique. The data cover 275 household interviews and include the primary drinking water source classified with the WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, water collection times and volumes, sanitation and handwashing practices, and the 12-item Household Water Insecurity Experiences (HWISE) Scale with its summary score and insecurity level.},
+#>     abstract = {Baseline (November 2024) and endline (June 2025) household survey data from the Kalai water, sanitation and hygiene project of HELVETAS in Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique. The data cover 275 household interviews and include the primary drinking water source classified with the WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, water collection times and volumes, sanitation and handwashing practices, and the 12-item Household Water Insecurity Experiences (HWISE) Scale with its summary score and insecurity level.},
 #>     version = {0.1.0},
 #>   }
 ```
