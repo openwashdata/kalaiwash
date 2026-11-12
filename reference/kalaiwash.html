@@ -37,12 +37,14 @@ original Excel calculations; see data-raw/data_processing.R."><meta property="og
   "datePublished": "2026-10-05",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "isAccessibleForFree": true,
+  "keywords": ["open data", "washdata", "water insecurity", "HWISE", "drinking water", "JMP service ladder", "sanitation", "handwashing", "household survey", "Nampula", "Mozambique"],
   "creator": [
     {
       "@type": "Person",
       "givenName": "John",
       "familyName": "Brogan",
-      "name": "John Brogan"
+      "name": "John Brogan",
+      "sameAs": "https://orcid.org/0009-0006-1543-5068"
     },
     {
       "@type": "Person",
@@ -69,13 +71,33 @@ original Excel calculations; see data-raw/data_processing.R."><meta property="og
   "publisher": {
     "@type": "Organization",
     "name": "openwashdata",
-    "url": "https://openwashdata.org"
+    "url": "https://openwashdata.org",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Global Health Engineering",
+      "url": "https://ghe.ethz.ch/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://ror.org/03zqk4w67",
+        "name": "Institute of Design, Materials and Fabrication",
+        "parentOrganization": {
+          "@type": "Organization",
+          "@id": "https://ror.org/05a28rw58",
+          "name": "ETH Zurich"
+        }
+      }
+    }
   },
   "includedInDataCatalog": {
     "@type": "DataCatalog",
     "name": "openwashdata",
     "url": "https://openwashdata.org/pages/gallery/data/"
   },
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique"
+  },
+  "temporalCoverage": "2024-11-13/2025-06-26",
   "variableMeasured": [
     {
       "@type": "PropertyValue",
@@ -253,13 +275,13 @@ original Excel calculations; see data-raw/data_processing.R."><meta property="og
       "@type": "DataDownload",
       "name": "kalaiwash.csv",
       "encodingFormat": "text/csv",
-      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/main/inst/extdata/kalaiwash.csv"
+      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/v0.1.0/inst/extdata/kalaiwash.csv"
     },
     {
       "@type": "DataDownload",
       "name": "kalaiwash.xlsx",
       "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/main/inst/extdata/kalaiwash.xlsx"
+      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/v0.1.0/inst/extdata/kalaiwash.xlsx"
     }
   ]
 }
@@ -280,6 +302,7 @@ original Excel calculations; see data-raw/data_processing.R."><meta property="og
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://openwashdata.org" aria-label="openwashdata website">openwashdata.org</a></li>
@@ -423,7 +446,29 @@ original Excel calculations; see <code>data-raw/data_processing.R</code>.</p>
 
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
+    <p>Household surveys of the Kalai project of HELVETAS Swiss
+Intercooperation in Nampula Province, Mozambique, collected in November
+2024 and June 2025. The raw data file was provided by John Brogan and
+added to the repository on 2026-08-28.</p>
+    </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># households by survey round and JMP drinking water service level</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">kalaiwash</span><span class="op">$</span><span class="va">survey_type</span>, <span class="va">kalaiwash</span><span class="op">$</span><span class="va">jmp_water_service</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Surface water Unimproved Limited Basic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Baseline            12        101      19     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Endline              0          3      94    46</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># median HWISE score by survey round</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">kalaiwash</span><span class="op">$</span><span class="va">hwise_score</span>, <span class="va">kalaiwash</span><span class="op">$</span><span class="va">survey_type</span>, <span class="va">median</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Baseline  Endline </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       23        0 </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -433,7 +478,7 @@ original Excel calculations; see <code>data-raw/data_processing.R</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Package built with <a href="https://openwashdata.github.io/washr/" class="external-link">washr</a> 1.2.2. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
+  <p>Package built with <a href="https://openwashdata.github.io/washr/" class="external-link">washr</a> 1.3.0. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

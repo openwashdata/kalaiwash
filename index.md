@@ -12,6 +12,10 @@ water sources classified with the WHO/UNICEF Joint Monitoring Programme
 (JMP) service ladder, and household water insecurity measured with the
 12-item Household Water Insecurity Experiences (HWISE) Scale.
 
+The data were collected by the Kalai project team of HELVETAS through
+household interviews and are published with the permission of the data
+authors under CC BY 4.0.
+
 ## Installation
 
 You can install the development version of kalaiwash from
@@ -46,6 +50,9 @@ library(kalaiwash)
 
 ### kalaiwash
 
+The dataset `kalaiwash` contains 275 observations and 34 variables. Each
+observation is one household interview.
+
 For an overview of the variable names, see the following table. The
 Levels column lists the levels of each categorical variable.
 
@@ -71,18 +78,18 @@ Levels column lists the levels of each categorical variable.
 | water_wash | factor | Household demo uses water to wash hands | No; Yes |
 | jmp_improved | factor | If the Water source is “improved” or “unimproved” according to the JMP classification, derived from source: Improved for borehole with handpump, protected dug well (with or without handpump), public tap or standpipe, mechanized borehole, protected spring and piped water; Unimproved otherwise | Unimproved; Improved |
 | jmp_water_service | factor | JMP drinking water service level derived from source and total_collect_time: Surface water; Unimproved (other unimproved source); Limited (improved source, total collection time over 30 minutes); Basic (improved source, total collection time of 30 minutes or less) | Surface water; Unimproved; Limited; Basic |
-| hwise_worry | ordered, factor | In the last 4 weeks, how frequently did you or anyone in your household worry you would not have enough water for all of your household needs? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_interrupt | ordered, factor | In the last 4 weeks, how frequently has your main water source been interrupted or limited (e.g. water pressure, less water than expected, river dried up)? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_clothes | ordered, factor | In the last 4 weeks, how frequently have problems with water meant that clothes could not be washed? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_change_plans | ordered, factor | In the last 4 weeks, how frequently have you or anyone in your household had to change schedules or plans due to problems with your water situation? (e.g. caring for others, household chores, agricultural work, IGA, sleeping) | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_change_meal | ordered, factor | In the last 4 weeks, how frequently have you or anyone in your household had to change what was being eaten because there were problems with water (e.g., for washing foods, cooking, etc.)? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_nohandwash | ordered, factor | In the last 4 weeks, how frequently have you or anyone in your household had to go without washing hands after dirty activities (e.g., defecating or changing diapers, cleaning animal dung) because of problems with water? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_no_bodywash | ordered, factor | In the last 4 weeks, how frequently have you or anyone in your household had to go without washing their body because of problems with water (e.g., not enough water, dirty, unsafe)? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_drinking | ordered, factor | In the last 4 weeks, how frequently has there not been as much water to drink as you would like for you or anyone in your household? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_angry | ordered, factor | In the last 4 weeks, how frequently did you or anyone in your household feel angry about your water situation? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_sleepthirsty | ordered, factor | In the last 4 weeks, how frequently have you or anyone in your household gone to sleep thirsty because there wasn’t any water to drink? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_nowater | ordered, factor | In the last 4 weeks, how frequently has there been no useable or drinkable water whatsoever in your household? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
-| hwise_shame | ordered, factor | In the last 4 weeks, how frequently did you or anyone in your household feel ashamed/excluded/stigmatized? | Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often (11-20 times); Always (more than 20 times) |
+| hwise_worry | ordered | In the last 4 weeks, how frequently did you or anyone in your household worry you would not have enough water for all of your household needs? | Never; Rarely; Sometimes; Often; Always |
+| hwise_interrupt | ordered | In the last 4 weeks, how frequently has your main water source been interrupted or limited (e.g. water pressure, less water than expected, river dried up)? | Never; Rarely; Sometimes; Often; Always |
+| hwise_clothes | ordered | In the last 4 weeks, how frequently have problems with water meant that clothes could not be washed? | Never; Rarely; Sometimes; Often; Always |
+| hwise_change_plans | ordered | In the last 4 weeks, how frequently have you or anyone in your household had to change schedules or plans due to problems with your water situation? (e.g. caring for others, household chores, agricultural work, IGA, sleeping) | Never; Rarely; Sometimes; Often; Always |
+| hwise_change_meal | ordered | In the last 4 weeks, how frequently have you or anyone in your household had to change what was being eaten because there were problems with water (e.g., for washing foods, cooking, etc.)? | Never; Rarely; Sometimes; Often; Always |
+| hwise_nohandwash | ordered | In the last 4 weeks, how frequently have you or anyone in your household had to go without washing hands after dirty activities (e.g., defecating or changing diapers, cleaning animal dung) because of problems with water? | Never; Rarely; Sometimes; Often; Always |
+| hwise_no_bodywash | ordered | In the last 4 weeks, how frequently have you or anyone in your household had to go without washing their body because of problems with water (e.g., not enough water, dirty, unsafe)? | Never; Rarely; Sometimes; Often; Always |
+| hwise_drinking | ordered | In the last 4 weeks, how frequently has there not been as much water to drink as you would like for you or anyone in your household? | Never; Rarely; Sometimes; Often; Always |
+| hwise_angry | ordered | In the last 4 weeks, how frequently did you or anyone in your household feel angry about your water situation? | Never; Rarely; Sometimes; Often; Always |
+| hwise_sleepthirsty | ordered | In the last 4 weeks, how frequently have you or anyone in your household gone to sleep thirsty because there wasn’t any water to drink? | Never; Rarely; Sometimes; Often; Always |
+| hwise_nowater | ordered | In the last 4 weeks, how frequently has there been no useable or drinkable water whatsoever in your household? | Never; Rarely; Sometimes; Often; Always |
+| hwise_shame | ordered | In the last 4 weeks, how frequently did you or anyone in your household feel ashamed/excluded/stigmatized? | Never; Rarely; Sometimes; Often; Always |
 | hwise_score | numeric | Sum of the 12 HWISE items scored Never 0, Rarely 1, Sometimes 2, Often or Always 3; range 0 to 36 | NA |
 | hwise_insecurity_level | factor | Water insecurity level from hwise_score: 0 to 2 “No-to-marginal”, 3 to 11 “Low”, 12 to 23 “Moderate”, 24 to 36 “High” | High; Moderate; Low; No-to-marginal |
 
@@ -275,6 +282,7 @@ citation("kalaiwash")
 #>     doi = {10.5281/zenodo.23164217},
 #>     url = {https://github.com/openwashdata/kalaiwash},
 #>     abstract = {Baseline (November 2024) and endline (June 2025) household survey data from the Kalai water, sanitation and hygiene project of HELVETAS in Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique. The data cover 275 household interviews and include the primary drinking water source classified with the WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, water collection times and volumes, sanitation and handwashing practices, and the 12-item Household Water Insecurity Experiences (HWISE) Scale with its summary score and insecurity level.},
+#>     keywords = {open data,washdata,water insecurity,HWISE,drinking water,JMP service ladder,sanitation,handwashing,household survey,Nampula,Mozambique},
 #>     version = {0.1.0},
 #>   }
 ```

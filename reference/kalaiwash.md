@@ -197,3 +197,26 @@ A tibble with 275 rows and 34 variables
 
   Water insecurity level from hwise_score: 0 to 2 "No-to-marginal", 3 to
   11 "Low", 12 to 23 "Moderate", 24 to 36 "High"
+
+## Source
+
+Household surveys of the Kalai project of HELVETAS Swiss
+Intercooperation in Nampula Province, Mozambique, collected in November
+2024 and June 2025. The raw data file was provided by John Brogan and
+added to the repository on 2026-08-28.
+
+## Examples
+
+``` r
+# households by survey round and JMP drinking water service level
+table(kalaiwash$survey_type, kalaiwash$jmp_water_service)
+#>           
+#>            Surface water Unimproved Limited Basic
+#>   Baseline            12        101      19     0
+#>   Endline              0          3      94    46
+
+# median HWISE score by survey round
+tapply(kalaiwash$hwise_score, kalaiwash$survey_type, median)
+#> Baseline  Endline 
+#>       23        0 
+```
