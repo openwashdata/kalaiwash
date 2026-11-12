@@ -39,3 +39,5 @@ Config/washr/community: This package is part of [openwashdata](https://openwashd
 Config/washr/version: 1.2.2
 Config/washr/brand: v1.1.0
 X-schema.org-keywords: open data, washdata, water insecurity, HWISE, drinking water, JMP service ladder, sanitation, handwashing, household survey, Nampula, Mozambique
+X-schema.org-spatialCoverage: Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique
+X-schema.org-temporalCoverage: 2024-11-13/2025-06-26
