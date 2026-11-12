@@ -45,6 +45,10 @@ WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, and
 household water insecurity measured with the 12-item Household Water
 Insecurity Experiences (HWISE) Scale.
 
+The data were collected by the Kalai project team of HELVETAS through
+household interviews and are published with the permission of the data
+authors under CC BY 4.0.
+
 ## Installation
 
 You can install the development version of kalaiwash from
@@ -102,6 +106,10 @@ library(kalaiwash)
 ```
 
 ### kalaiwash
+
+The dataset `kalaiwash` contains `r nrow(kalaiwash)` observations and
+`r ncol(kalaiwash)` variables. Each observation is one household
+interview.
 
 For an overview of the variable names, see the following table. The
 Levels column lists the levels of each categorical variable.

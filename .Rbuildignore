@@ -10,3 +10,5 @@
 ^\.github$
 ^_brand\.yml$
 ^logos$
+^CLAUDE\.md$
+^\.zenodo\.json$

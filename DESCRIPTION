@@ -2,7 +2,8 @@ Package: kalaiwash
 Title: Household Water Insecurity and Drinking Water Service Levels from the Kalai Project in Nampula, Mozambique
 Version: 0.1.0
 Authors@R: c(
-    person("John", "Brogan", , "john.brogan.pro@gmail.com", role = "aut"),
+    person("John", "Brogan", , "john.brogan.pro@gmail.com", role = "aut",
+           comment = c(ORCID = "0009-0006-1543-5068")),
     person("Adriana", "Clavijo Daza", , "aclavijo@ethz.ch", role = "cre",
            comment = c(ORCID = "0009-0002-0589-2274")),
     person("Dercio", "Obra", role = "aut")
@@ -36,5 +37,9 @@ Config/washr/publisher: Published by [openwashdata](https://openwashdata.org), a
 Config/washr/home: https://openwashdata.org
 Config/washr/catalog: https://openwashdata.org/pages/gallery/data/
 Config/washr/community: This package is part of [openwashdata](https://openwashdata.org). Browse the [data catalogue](https://openwashdata.org/pages/gallery/data/) or get the [newsletter](https://openwashdata.org/pages/newsletter/).
-Config/washr/version: 1.2.2
+Config/washr/version: 1.3.0
 Config/washr/brand: v1.1.0
+X-schema.org-keywords: open data, washdata, water insecurity, HWISE, drinking water, JMP service ladder, sanitation, handwashing, household survey, Nampula, Mozambique
+X-schema.org-spatialCoverage: Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique
+X-schema.org-temporalCoverage: 2024-11-13/2025-06-26
+Config/washr/parent-organizations: Global Health Engineering <https://ghe.ethz.ch/>; Institute of Design, Materials and Fabrication <https://ror.org/03zqk4w67>; ETH Zurich <https://ror.org/05a28rw58>
