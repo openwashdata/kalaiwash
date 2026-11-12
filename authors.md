@@ -12,7 +12,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/openwashdata/kalaiwash/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/openwashdata/kalaiwash/blob/v0.2.0/inst/CITATION)
 
 Brogan J, Clavijo Daza A, Obra D (2026). “kalaiwash: Household Water
 Insecurity and Drinking Water Service Levels from the Kalai Project in
