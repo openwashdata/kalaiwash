@@ -51,6 +51,10 @@
 #'   \item{hwise_score}{Sum of the 12 HWISE items scored Never 0, Rarely 1, Sometimes 2, Often or Always 3; range 0 to 36}
 #'   \item{hwise_insecurity_level}{Water insecurity level from hwise_score: 0 to 2 "No-to-marginal", 3 to 11 "Low", 12 to 23 "Moderate", 24 to 36 "High"}
 #' }
+#' @source Household surveys of the Kalai project of HELVETAS Swiss
+#'   Intercooperation in Nampula Province, Mozambique, collected in November
+#'   2024 and June 2025. The raw data file was provided by John Brogan and
+#'   added to the repository on 2026-08-28.
 #' @examples
 #' # households by survey round and JMP drinking water service level
 #' table(kalaiwash$survey_type, kalaiwash$jmp_water_service)
