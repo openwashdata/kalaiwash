@@ -9,7 +9,7 @@ type: dataset
 license: CC-BY-4.0
 title: 'kalaiwash: Household Water Insecurity and Drinking Water Service Levels from
   the Kalai Project in Nampula, Mozambique'
-version: 0.1.0
+version: 0.2.0
 doi: 10.5281/zenodo.23164217
 abstract: Baseline (November 2024) and endline (June 2025) household survey data from
   the Kalai water, sanitation and hygiene project of HELVETAS in Larde, Memba, Moma
@@ -31,7 +31,7 @@ authors:
   given-names: Dercio
 repository-code: https://github.com/openwashdata/kalaiwash
 url: https://github.com/openwashdata/kalaiwash
-date-released: '2026-10-05'
+date-released: '2026-11-12'
 contact:
 - family-names: Clavijo Daza
   given-names: Adriana

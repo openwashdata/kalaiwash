@@ -17,7 +17,7 @@
   ],
   "license": "cc-by-4.0",
   "keywords": ["open data", "washdata", "water insecurity", "HWISE", "drinking water", "JMP service ladder", "sanitation", "handwashing", "household survey", "Nampula", "Mozambique"],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "communities": [
     {
       "identifier": "openwashdata"
