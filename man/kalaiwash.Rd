@@ -61,4 +61,11 @@ and Always (more than 20). Derived variables were
 recalculated in R from the raw survey responses and checked against the
 original Excel calculations; see \code{data-raw/data_processing.R}.
 }
+\examples{
+# households by survey round and JMP drinking water service level
+table(kalaiwash$survey_type, kalaiwash$jmp_water_service)
+
+# median HWISE score by survey round
+tapply(kalaiwash$hwise_score, kalaiwash$survey_type, median)
+}
 \keyword{datasets}
