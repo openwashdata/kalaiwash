@@ -103,6 +103,10 @@ library(kalaiwash)
 
 ### kalaiwash
 
+The dataset `kalaiwash` contains `r nrow(kalaiwash)` observations and
+`r ncol(kalaiwash)` variables. Each observation is one household
+interview.
+
 For an overview of the variable names, see the following table. The
 Levels column lists the levels of each categorical variable.
 
