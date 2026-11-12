@@ -23,6 +23,10 @@ water sources classified with the WHO/UNICEF Joint Monitoring Programme
 (JMP) service ladder, and household water insecurity measured with the
 12-item Household Water Insecurity Experiences (HWISE) Scale.
 
+The data were collected by the Kalai project team of HELVETAS through
+household interviews and are published with the permission of the data
+authors under CC BY 4.0.
+
 ## Installation
 
 You can install the development version of kalaiwash from
@@ -54,6 +58,9 @@ library(kalaiwash)
 ```
 
 ### kalaiwash
+
+The dataset `kalaiwash` contains 275 observations and 34 variables. Each
+observation is one household interview.
 
 For an overview of the variable names, see the following table. The
 Levels column lists the levels of each categorical variable.
@@ -599,7 +606,7 @@ hwise_worry
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -610,8 +617,7 @@ worry you would not have enough water for all of your household needs?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -625,7 +631,7 @@ hwise_interrupt
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -637,8 +643,7 @@ river dried up)?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -652,7 +657,7 @@ hwise_clothes
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -663,8 +668,7 @@ clothes could not be washed?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -678,7 +682,7 @@ hwise_change_plans
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -691,8 +695,7 @@ IGA, sleeping)
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -706,7 +709,7 @@ hwise_change_meal
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -718,8 +721,7 @@ water (e.g., for washing foods, cooking, etc.)?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -733,7 +735,7 @@ hwise_nohandwash
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -746,8 +748,7 @@ water?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -761,7 +762,7 @@ hwise_no_bodywash
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -773,8 +774,7 @@ had to go without washing their body because of problems with water
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -788,7 +788,7 @@ hwise_drinking
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -799,8 +799,7 @@ drink as you would like for you or anyone in your household?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -814,7 +813,7 @@ hwise_angry
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -825,8 +824,7 @@ feel angry about your water situation?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -840,7 +838,7 @@ hwise_sleepthirsty
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -851,8 +849,7 @@ gone to sleep thirsty because there wasn’t any water to drink?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -866,7 +863,7 @@ hwise_nowater
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -877,8 +874,7 @@ drinkable water whatsoever in your household?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -892,7 +888,7 @@ hwise_shame
 
 <td style="text-align:left;">
 
-ordered, factor
+ordered
 </td>
 
 <td style="text-align:left;">
@@ -903,8 +899,7 @@ feel ashamed/excluded/stigmatized?
 
 <td style="text-align:left;">
 
-Never (0 times); Rarely (1-2 times); Sometimes (3-10 times); Often
-(11-20 times); Always (more than 20 times)
+Never; Rarely; Sometimes; Often; Always
 </td>
 
 </tr>
@@ -1175,6 +1170,7 @@ citation("kalaiwash")
 #>     doi = {10.5281/zenodo.23164217},
 #>     url = {https://github.com/openwashdata/kalaiwash},
 #>     abstract = {Baseline (November 2024) and endline (June 2025) household survey data from the Kalai water, sanitation and hygiene project of HELVETAS in Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique. The data cover 275 household interviews and include the primary drinking water source classified with the WHO/UNICEF Joint Monitoring Programme (JMP) service ladder, water collection times and volumes, sanitation and handwashing practices, and the 12-item Household Water Insecurity Experiences (HWISE) Scale with its summary score and insecurity level.},
+#>     keywords = {open data,washdata,water insecurity,HWISE,drinking water,JMP service ladder,sanitation,handwashing,household survey,Nampula,Mozambique},
 #>     version = {0.1.0},
 #>   }
 ```
