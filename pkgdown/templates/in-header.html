@@ -14,12 +14,14 @@
   "datePublished": "2026-10-05",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "isAccessibleForFree": true,
+  "keywords": ["open data", "washdata", "water insecurity", "HWISE", "drinking water", "JMP service ladder", "sanitation", "handwashing", "household survey", "Nampula", "Mozambique"],
   "creator": [
     {
       "@type": "Person",
       "givenName": "John",
       "familyName": "Brogan",
-      "name": "John Brogan"
+      "name": "John Brogan",
+      "sameAs": "https://orcid.org/0009-0006-1543-5068"
     },
     {
       "@type": "Person",
@@ -46,13 +48,33 @@
   "publisher": {
     "@type": "Organization",
     "name": "openwashdata",
-    "url": "https://openwashdata.org"
+    "url": "https://openwashdata.org",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Global Health Engineering",
+      "url": "https://ghe.ethz.ch/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://ror.org/03zqk4w67",
+        "name": "Institute of Design, Materials and Fabrication",
+        "parentOrganization": {
+          "@type": "Organization",
+          "@id": "https://ror.org/05a28rw58",
+          "name": "ETH Zurich"
+        }
+      }
+    }
   },
   "includedInDataCatalog": {
     "@type": "DataCatalog",
     "name": "openwashdata",
     "url": "https://openwashdata.org/pages/gallery/data/"
   },
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Larde, Memba, Moma and Mecuburi districts, Nampula Province, Mozambique"
+  },
+  "temporalCoverage": "2024-11-13/2025-06-26",
   "variableMeasured": [
     {
       "@type": "PropertyValue",
@@ -230,13 +252,13 @@
       "@type": "DataDownload",
       "name": "kalaiwash.csv",
       "encodingFormat": "text/csv",
-      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/main/inst/extdata/kalaiwash.csv"
+      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/v0.1.0/inst/extdata/kalaiwash.csv"
     },
     {
       "@type": "DataDownload",
       "name": "kalaiwash.xlsx",
       "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/main/inst/extdata/kalaiwash.xlsx"
+      "contentUrl": "https://raw.githubusercontent.com/openwashdata/kalaiwash/v0.1.0/inst/extdata/kalaiwash.xlsx"
     }
   ]
 }
